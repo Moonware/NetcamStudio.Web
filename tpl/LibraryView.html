@@ -1,0 +1,46 @@
+<div class="hero-unit">
+    <div class="row-fluid">
+        <div class="span3" id="libCamListHolder">
+            <span>Source:</span><br/>
+
+        </div>
+        <div class="span3">
+            Display:<br/>
+            <select id="libraryDisplaySelector">
+                <option value="25">25</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+            </select>
+        </div>
+        <div class="span3">
+            <span>Start Time:</span><br/>
+                <div id="startDateHolder" class="input-append date">
+                    <input data-format="dd/MM/yyyy hh:mm:ss" type="text"></input>
+                    <span class="add-on">
+                      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+                      </i>
+                    </span>
+                 </div>
+        </div>
+
+        <div class="span3">
+            <span>End Time:</span><br/>
+            <div id="endDateHolder" class="input-append date">
+                <input data-format="dd/MM/yyyy hh:mm:ss" type="text"></input>
+                    <span class="add-on">
+                      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+                      </i>
+                    </span>
+            </div>
+        </div>
+    </div>
+    <div class="libraryContent" id="libraryContent">
+    </div>
+    <div class="libraryPaging">
+        <div class="pagination">
+            <ul id="libraryPagination">
+                <li class="active"><a href="#library">1</a></li>
+            </ul>
+        </div>
+    </div>
+</div>

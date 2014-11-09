@@ -1,0 +1,1310 @@
+body {
+    font-family: source-sans-pro, sans-serif;
+    font-size: 15px;
+    /*padding-top: 60px;*/
+    /*padding-bottom: 40px;*/
+}
+
+#virtualBody
+{
+    /*
+    border: 1px solid red;
+    background-color: lightgray;
+    */
+}
+
+.fullwidth{
+    width: 100%;
+}
+
+.overlay {
+    background-color: #000;
+    bottom: 0;
+    left: 0;
+    opacity: 0.5;
+    filter: alpha(opacity = 50); /* IE7 & 8 */
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 1002;
+}
+
+.outPopUp{
+    position:fixed;
+
+    z-index:1002;
+
+    top: 0px;
+    left: 0px;
+    right: 0px;
+
+    text-align: center;
+}
+
+.outPopUp * {
+    opacity: 1;
+}
+
+.outPopUp > .cameraContainerAbsolute > img {
+    max-width: 100%;
+    max-height: 100%;
+    /*height: 100%;*/
+    height: auto;
+    width: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0px;
+    left:0;
+    right:0;
+    padding-bottom: 4px;
+    margin: auto;
+}
+
+.outPopUp p {
+    display: none;
+}
+
+.outPopUp .cameraContainer {
+    margin: 20px;
+}
+.outPopUp .cameraContainer > div {
+    text-align: center;
+    vertical-align: middle;
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    top: 0px;
+    margin: auto;
+}
+.outPopUp .cameraContainer .video-js {
+    width: 100% !important;
+    height: 100%  !important;
+}
+
+@media screen and (max-width: 650px) {
+    .outPopUp > .cameraContainerAbsolute > img {
+        max-width: 100%;
+        max-height: 100%;
+        height: auto;
+        width: 100%;
+    }
+}
+
+@media screen and (max-height: 350px) {
+    .outPopUp > .cameraContainerAbsolute > img {
+        height: auto;
+        width: auto;
+    }
+}
+
+.dropdown-menu {
+    max-height: 400px;
+    overflow: auto;
+    width: 230px;
+}
+
+.list-item {
+    padding-top: 6px;
+    padding-left: 56px;
+}
+
+.no-reports {
+    display: none;
+}
+
+.webCamImage{
+    width: auto;
+    height: auto;
+
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.liveImage
+{
+    width: 640px;
+    height: 320px;
+}
+
+/* Steve Override */
+
+.row-fluid.multiView [class*="span"]:first-child {
+    /* commited by Fora Soft
+    margin-left: 20px;*/
+}
+
+
+/* Steve from media < 979 */
+
+body {
+    padding-top: 0;
+}
+.navbar-fixed-top,
+.navbar-fixed-bottom {
+    position: absolute;
+}
+.navbar-fixed-top {
+    margin-bottom: 20px;
+}
+.navbar-fixed-bottom {
+    margin-top: 20px;
+}
+.navbar-fixed-top .navbar-inner,
+.navbar-fixed-bottom .navbar-inner {
+    padding: 5px;
+}
+.navbar .container {
+    width: auto;
+    padding: 0;
+}
+
+/* Login */
+
+.form-server {
+    margin: auto;
+    max-width: 500px;
+}
+
+.form-signin {
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+    margin-bottom: 10px;
+}
+.form-signin .checkbox {
+    font-weight: normal;
+}
+.form-signin .form-control {
+    position: relative;
+    font-size: 16px;
+    height: auto;
+    padding: 10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.form-signin .form-control:focus {
+    z-index: 2;
+}
+.form-signin input[type="text"] {
+    margin-bottom: -1px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+#loginBtn{
+    max-width: 110px;
+    margin: 0 auto;
+    margin-top: 30px;
+}
+
+.table {
+    font-size: 14px;
+    /*table-layout: fixed;*/
+}
+
+.table th {
+    overflow: hidden;
+}
+
+.table td {
+    overflow: hidden;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.table img {
+    /*
+    width: auto;
+    height: 100%;
+    */
+
+    max-width: 100%;
+    max-height: 100%;
+}
+
+html, body, body > div {
+    height: 100%;
+}
+
+.mainContainer {
+    position: absolute;
+    top: 110px;
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
+
+    min-height: 460px;
+    min-width: 300px;
+
+    padding: 0px;
+    margin: 0px;
+}
+
+.dynamicContent, .liveSource>.cameraContainer {
+    background-color: #484448;
+    border-radius: 0px 0px 0px 5px;
+}
+
+.liveSourceSettings {
+    margin-right: 320px;
+    background-color: #eeeeee;
+    border-right: 1px solid #dddddd;
+    height: 60px;
+    padding-top: 15px;
+
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding-left: 10px;
+}
+@media (max-width: 430px) {
+    .liveSourceSettings {
+        height: 80px;
+    }
+}
+    .cameraControls > div {
+        width: 100%;
+        height: 100%;
+    }
+
+
+.libraryContent > div {
+    width: 320px;
+    height: 300px;
+    display: inline-block;
+    overflow: hidden;
+    margin-right: 10px;
+    font-size: 14px;
+}
+
+.libraryContent > div > img {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.cameraControlPanel {
+    width: 100%;
+}
+@media (max-width: 767px) {
+    .brand {
+        top: 5px;
+    }
+    .btn-navbar {
+        margin-top: 27px !important;
+        z-index: 2;
+    }
+    .dynamicContent {
+        margin-left: -10px;
+        margin-right: -10px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+
+        padding: 0px;
+    }
+
+    .dynamicContent table {
+        width: 100%;
+        height: 100%;
+
+        max-width: 100%;
+        max-height: 100%;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        table-layout: fixed;
+    }
+
+    .cameraContainerAbsolute {
+        text-align: center;
+    }
+
+    .span4 {
+        float: left !important;
+        width: 40% !important;
+        padding-right: 10px;
+    }
+
+    .liveSource .cameraContainer .video-js {
+        width: 100% !important;
+        height: 480px !important;
+    }
+
+    .hero-unit {
+        padding-bottom: 0px !important;
+    }
+}
+@media (min-width: 768px) {
+    .mainContainer > .mainContent {
+        position: absolute;
+        top: 0px;
+        bottom: 60px;
+        right: 4px;
+        left: 4px;
+        overflow: auto;
+    }
+        .mainContainer > .mainContent > div {
+            width: 100%;
+            height: 100%;
+
+            -moz-border-radius: 7px;
+            -webkit-border-radius: 7px;
+            border-radius: 7px;
+
+            border: 1px solid #dddddd;
+
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+            .hero-unit {
+                position: absolute;
+                top: 0px;
+                bottom: 0px;
+                left: 0px;
+                right: 0px;
+            }
+            .singleViewContainer {
+                right: 319px;
+            }
+                .contentNav div {
+                    display: inline-block;
+                }
+
+                .contentNav .pageNavigation {
+                    text-align: right;
+                    float: right;
+                }
+
+                .eventViewerContent {
+                    position: absolute;
+                    top: 80px;
+                    bottom: 10px;
+                    left: 0px;
+                    right: 0px;
+                    padding-left: 10px;
+                    padding-right: 10px;
+                    -moz-box-sizing: border-box;
+                    -webkit-box-sizing: border-box;
+                    box-sizing: border-box;
+                    vertical-align: top;
+                    overflow-y: auto;
+                }
+
+                .libraryContent {
+                    position: absolute;
+                    top: 80px;
+                    bottom: 45px;
+                    left: 0px;
+                    right: 0px;
+                    padding-left: 10px;
+                    padding-right: 10px;
+                    -moz-box-sizing: border-box;
+                    -webkit-box-sizing: border-box;
+                    box-sizing: border-box;
+                    vertical-align: top;
+                    overflow-y: auto;
+                }
+
+                .libraryPaging {
+                    position: absolute;
+                    left: 0px;
+                    right: 0px;
+                    height: 40px;
+                    bottom: 0px;
+
+                    -moz-box-sizing: border-box;
+                    -webkit-box-sizing: border-box;
+                    box-sizing: border-box;
+
+                    text-align: center;
+                }
+
+                .pagination {
+                    margin: auto;
+                }
+
+                .liveSource {
+                    position: absolute;
+                    top: 60px;
+                    bottom: 0px;
+                    left: 0px;
+                    right: 0px;
+                    padding-left: 10px;
+                    padding-right: 10px;
+                    -moz-box-sizing: border-box;
+                    -webkit-box-sizing: border-box;
+                    box-sizing: border-box;
+                    vertical-align: top;
+                    overflow: auto;
+                }
+
+                    .cameraControls {
+                        width: 319px;
+                        height: 100%;
+                        -moz-box-sizing: border-box;
+                        box-sizing: border-box;
+                    }
+
+                    .liveSource .cameraContainer {
+
+                        position: absolute;
+                        left: 0px;
+                        right: 0px;
+                        height: 100%;
+                        -moz-box-sizing: border-box;
+                        -webkit-box-sizing: border-box;
+                        box-sizing: border-box;
+                        text-align: center;
+                        vertical-align: middle;
+                    }
+
+                    .liveSource .cameraContainer > div {
+                        text-align: center;
+                        vertical-align: middle;
+                        position: absolute;
+                        left: 0px;
+                        right: 0px;
+                        bottom: 0px;
+                        top: 0px;
+                        margin: auto;
+                    }
+                     .liveSource .cameraContainer .video-js {
+                         width: 100% !important;
+                         height: 100%  !important;
+                     }
+
+                    .liveSource .cameraContainer img{
+                        /* centering img, if image original size less than cell size */
+                        position: absolute;
+                        top: 0px;
+                        bottom: 0px;
+                        left: 0px;
+                        right: 0px;
+                        padding-left: 0px;
+                        padding-right: 0px;
+                        padding-bottom: 0px;
+                        margin: auto;
+                        -moz-box-sizing: border-box;
+                        -webkit-box-sizing: border-box;
+                        box-sizing: border-box;
+                        border: 1px solid black;
+                    }
+
+                    .cameraControls {
+                        padding-top: 0px;
+                        float: right;
+                        text-align: center;
+                        /* hack for chrome */
+                        min-width: 1px;
+                    }
+
+                    .cameraControlPanel {
+                        position: absolute;
+                    }
+
+                .dynamicContent {
+                    position: absolute;
+                    top: 50px;
+                    bottom: 10px;
+                    left: 0px;
+                    right: 0px;
+                    -moz-box-sizing: border-box;
+                    -webkit-box-sizing: border-box;
+                    box-sizing: border-box;
+                }
+
+                    .dynamicContent table {
+                        width: 100%;
+                        height: 100%;
+
+                        max-width: 100%;
+                        max-height: 100%;
+                        -moz-box-sizing: border-box;
+                        -webkit-box-sizing: border-box;
+                        box-sizing: border-box;
+                        table-layout: fixed;
+
+                        padding: 0px;
+                        margin: 0px;
+                    }
+
+                    .dynamicContent tbody {
+                        width: 100%;
+                        height: 100%;
+                        -moz-box-sizing: border-box;
+                        -webkit-box-sizing: border-box;
+                        box-sizing: border-box;
+                        padding: 0px;
+                        margin: 0px;
+                    }
+
+                    .dynamicContent td {
+                        border: 2px solid white;
+                        -moz-box-sizing: border-box;
+                        -webkit-box-sizing: border-box;
+                        box-sizing: border-box;
+                        padding: 0px;
+                        margin: 0px;
+                        vertical-align: top;
+                    }
+
+                    .dynamicContent tr {
+                        -moz-box-sizing: border-box;
+                        -webkit-box-sizing: border-box;
+                        box-sizing: border-box;
+                        padding: 0px;
+                        margin: 0px;
+                    }
+
+                        .dynamicContent .cameraContainer {
+                            width: 100%;
+                            height: 100%;
+                            -moz-box-sizing: border-box;
+                            -webkit-box-sizing: border-box;
+                            box-sizing: border-box;
+                            text-align: center;
+                            vertical-align: top;
+
+                            padding: 0px;
+                            margin: 0px;
+                        }
+                            .dynamicContent .cameraContainer .cameraContainerAbsolute {
+                                /* js set width and height */
+                                position: absolute;
+                                margin-right: -3px;
+                                margin-left: -3px;
+                                line-height: 0px;
+                                -moz-box-sizing: border-box;
+                                -webkit-box-sizing: border-box;
+                                box-sizing: border-box;
+                                vertical-align: middle;
+
+                            }
+
+                            .dynamicContent .cameraContainer img {
+                                width: auto;
+                                height: auto;
+                                max-height: 100%;
+                                max-width: 100%;
+                                -moz-box-sizing: border-box;
+                                -webkit-box-sizing: border-box;
+                                box-sizing: border-box;
+                            }
+
+                            .dynamicContent .cameraContainer .cameraContainerAbsolute img {
+
+                                /* centering img, if image original size less than cell size */
+                                position: absolute;
+                                top: 0px;
+                                bottom: 0px;
+                                left: 0px;
+                                right: 0px;
+                                padding-left: 0px;
+                                padding-right: 0px;
+                                padding-bottom: 0px;
+                                margin: auto;
+                                -moz-box-sizing: border-box;
+                                -webkit-box-sizing: border-box;
+                                box-sizing: border-box;
+                                border: 1px solid black;
+                            }
+
+                            .cameraContainer  p {
+                                position: absolute;
+
+                                padding: 10px;
+                            }
+    .mainContainer > footer {
+        padding: 0px;
+        margin: 0px;
+
+        position: absolute;
+        bottom: 0px;
+
+        width: 100%;
+        height: 60px;
+    }
+
+        .mainContainer > footer > hr {
+            padding: 0px;
+            margin: 10px;
+        }
+
+        .mainContainer > footer p {
+           padding-left: 40px;
+           padding-right: 10px;
+        }
+
+    .mainUnauthContainer>footer {
+        width:380px;
+        height:40px;
+
+        left:50%;
+        margin-left: -180px;
+    }
+
+    .panTiltButtons > div > div {
+        width: 200px;
+        height: 10px;
+        position: absolute;
+        margin-top: -100px;
+        top: 25%;
+        padding-left: 70px;
+    }
+}
+
+.socialButtons {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    padding-top: 15px;
+
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.socialButtons div {
+    display: inline-block;
+}
+
+.socialButtons iframe {
+    display: inline-block;
+}
+
+.icon-select {
+    margin-top: -5px;
+    width: 51px;
+    height: 42px;
+}
+
+.component-icon > img {
+    display: none;
+}
+
+.box > div {
+    width: 120px;
+    z-index: 10;
+    position: absolute;
+}
+
+.datepicker {
+    height: auto;
+}
+
+.panTiltRed {
+    width: 35px;
+    height: 35px;
+    background-color: #ffffff;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    border: 2px solid #dd1d1d;
+    cursor: pointer;
+    color: #dd1d1d;
+    font-size: 10pt;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: bold;
+    outline:none;
+}
+
+.panTiltRedLeft {
+    position: absolute;
+    margin-top: 7px;
+    margin-left: 48px;
+    display: block;
+}
+
+.panTiltRedRight {
+    position: absolute;
+    margin-top: 7px;
+    margin-left: 122px;
+    display: block;
+}
+
+.panTilt {
+    width: 65px;
+    height: 65px;
+    background-color:#ffffff;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    border: 2px solid #0b5ea2;
+    cursor: pointer;
+    color: #0b5ea2;
+    font-size: 12pt;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: bold;
+    outline:none;
+}
+
+.panTilt:hover {
+    background: #0179ce; /* Old browsers */
+    background: -moz-linear-gradient(top, #0179ce 0%, #005d9f 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#0179ce), color-stop(100%,#005d9f)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #0179ce 0%,#005d9f 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #0179ce 0%,#005d9f 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #0179ce 0%,#005d9f 100%); /* IE10+ */
+    background: linear-gradient(to bottom, #0179ce 0%,#005d9f 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0179ce', endColorstr='#005d9f',GradientType=0 ); /* IE6-9 */
+    border: 0px;
+    color: white;
+}
+.panTiltUp {
+    -moz-transform: rotate(-90.0deg);  /* FF3.5+ */
+    -o-transform: rotate(-90.0deg);  /* Opera 10.5 */
+    -webkit-transform: rotate(-90.0deg);  /* Saf3.1+, Chrome */
+    filter:  progid:DXImageTransform.Microsoft.BasicImage(rotation=0.083);  /* IE6,IE7 */
+    -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=0.083)"; /* IE8 */
+
+    position: absolute;
+    margin-top: 0px;
+    margin-left: 60px;
+    display: block;
+}
+
+.panTiltDown {
+    -moz-transform: rotate(90.0deg);  /* FF3.5+ */
+    -o-transform: rotate(90.0deg);  /* Opera 10.5 */
+    -webkit-transform: rotate(90.0deg);  /* Saf3.1+, Chrome */
+    filter:  progid:DXImageTransform.Microsoft.BasicImage(rotation=-0.083);  /* IE6,IE7 */
+    -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=-0.083)"; /* IE8 */
+
+    position: absolute;
+    margin-top: 100px;
+    margin-left: 60px;
+    display: block;
+}
+.panTiltButtons p {
+    position: absolute;
+    margin-top: 180px;
+    margin-left: 60px;
+    display: block;
+}
+.panTiltButtons > div {
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+}
+
+.panTiltLeft {
+    position: absolute;
+    margin-top: 50px;
+    margin-left: 0px;
+    display: block;
+}
+
+.panTiltRight {
+    position: absolute;
+    margin-top: 50px;
+    margin-left: 120px;
+    display: block;
+}
+
+.panTiltButtons {
+    border-bottom: 1px solid #dddddd;
+}
+
+.zoomButtonsContainer p, .panTiltButtons p {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+.zoomButtonsContainer, .panTiltButtons {
+    width: 100%;
+    height: 50%;
+}
+
+    .zoomButtonsContainer > div {
+
+        width: 210px;
+        height: 94px;
+
+        position: relative;
+        top: 50%;
+        left: 50%;
+        margin-top: -27px;
+        margin-left: -105px;
+    }
+
+    .zoomButtonsContainer > div > p {
+        margin-top: 15px;
+        height: 20px;
+    }
+    .zoomButtons {
+        width: 210px;
+        height: 54px;
+
+        background: #eeeeee;
+        border-radius: 10px;
+        border: 2px solid #dddddd;
+
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+.zoomButton {
+    background: rgba(0, 0, 0, 0);
+    border: 0;
+    color: #b2b2b2;
+    font-size: 22pt;
+    vertical-align: middle;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.zoomIn {
+    padding-top: 15px;
+    margin-right: 15px;
+    float: right;
+    text-align: left;
+}
+
+.zoomOut {
+    padding-top: 13px;
+    margin-left: 15px;
+    float: left;
+}
+
+.panTiltDown:hover .panTiltUp:hover  {
+    background: #0179ce; /* Old browsers */
+    background: -moz-linear-gradient(left, #0179ce 0%, #005d9f 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%,#0179ce), color-stop(100%,#005d9f)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(left, #0179ce 0%,#005d9f 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(left, #0179ce 0%,#005d9f 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(left, #0179ce 0%,#005d9f 100%); /* IE10+ */
+    background: linear-gradient(to right, #0179ce 0%,#005d9f 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0179ce', endColorstr='#005d9f',GradientType=1 ); /* IE6-9 */
+}
+
+.loginForm {
+    width: 100%;
+    max-width: 475px;
+    height: 460px;
+
+    margin: auto;
+
+    text-align: center;
+
+    background: #0b5ca1; /* Old browsers */
+    background: -moz-linear-gradient(top, #0b5ca1 0%, #0e3a61 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#0b5ca1), color-stop(100%,#0e3a61)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #0b5ca1 0%,#0e3a61 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #0b5ca1 0%,#0e3a61 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #0b5ca1 0%,#0e3a61 100%); /* IE10+ */
+    background: linear-gradient(to bottom, #0b5ca1 0%,#0e3a61 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0b5ca1', endColorstr='#0e3a61',GradientType=0 ); /* IE6-9 */
+
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+    border-radius: 7px;
+
+    -moz-box-shadow: 0 0 10px rgba(0,0,0,0.9);
+    -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.9);
+    box-shadow: 0 0 10px rgba(0,0,0,0.9);
+    filter: progid:DXImageTransform.Microsoft.shadow(direction=120, color=#000000, strength=10);
+
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+
+    position: relative;
+    top: 50%;
+    margin-top: -250px;
+}
+.formSignin {
+    width: 100%;
+}
+.loginTable {
+    width: 100%;
+    height: 250px;
+
+    margin-top: 30px;
+}
+
+.loginTableLeftCol {
+    float: left;
+    width: 160px;
+    height: 100%;
+
+    background-color: #f0f0f0;
+
+    -moz-border-radius: 5px 0px 0px 5px;
+    -webkit-border-radius: 5px 0px 0px 5px;
+    border-radius: 5px 0px 0px 5px;
+}
+
+.loginTableRightCol {
+    padding-left: 160px;
+    width: 100%;
+    height: 100%;
+
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+
+    background-color: #ffffff;
+
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.loginTableCell {
+    width: 100%;
+    height: 20%;
+
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 12pt;
+}
+
+.loginTableCell p {
+    padding: 0px;
+    margin: 0px;
+    position: relative;
+    top: 15px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.loginTableCell hr {
+    position: relative;
+    top: 0px;
+    width: 100%;
+    border: none;
+    height: 1px;
+    color: #b0b0b0;
+    background-color: #b0b0b0;
+    padding: 0px;
+    margin: 0px;
+}
+
+.loginTableCell>input {
+    border: 0px;
+    width: 100%;
+    height: 100%;
+
+    padding: 0px 0px 0px 10px;
+    margin: 0px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 12pt;
+}
+
+.loginTableCell>input[type="checkbox"] {
+    display: none;
+}
+.loginTableCell>label {
+    position: relative;
+    top: 13px;
+    left: 13px;
+    width: 25px;
+    height: 25px;
+}
+
+input[type="checkbox"] {
+    display:none;
+}
+input[type="checkbox"] + label {
+    font: 18px bold;
+    color: #444;
+    cursor: pointer;
+}
+input[type="checkbox"] + label::before {
+    content: "";
+    display: inline-block;
+    height: 25px;
+    width: 25px;
+    margin: 0 5px 0 0;
+    background-image: url("../img/checkbox.png");
+    background-repeat: no-repeat;
+}
+input[type="checkbox"] + label::before {
+    background-position: 0px 0px;
+}
+input[type="checkbox"]:checked + label::before {
+    background-position: -25px 0px;
+}
+input[type="checkbox"]:disabled + label::before {
+    background-position: 0px 0px;
+}
+input[type="checkbox"]:checked:disabled + label::before {
+    background-position: -25px 0px;
+}
+
+.halfWidth {
+    width: 50% !important;
+    display: inline-block;
+    float: right;
+    max-height: 49px;
+}
+
+.borderRight {
+    border-right: 1px solid #b0b0b0 !important;
+}
+
+.borderTopRightRounded {
+    -moz-border-radius: 0px 5px 0px 0px !important;
+    -webkit-border-radius: 0px 5px 0px 0px !important;
+    border-radius: 0px 5px 0px 0px !important;
+}
+
+.mainUnauthContainer {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+
+
+    min-height: 570px;
+    overflow: auto;
+}
+
+.mainUnauthContent {
+    width: 100%;
+    height: 100%;
+
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.mainUnauthContent>div {
+    width: 100%;
+    height: 100%;
+
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.mainUnauthContainer>footer {
+    position: absolute;
+    bottom: 0px;
+    width: auto;
+    height: auto;
+}
+
+@media (min-width: 475px) {
+    .loginForm {
+        padding: 30px 20px 0px 20px;
+    }
+}
+
+@media (max-width: 475px) {
+    .loginForm {
+        padding: 30px 5px 0px 5px;
+    }
+
+    .loginTableLeftCol {
+        width: 120px;
+    }
+
+    .loginTableRightCol {
+        padding-left: 120px;
+    }
+}
+
+.mainContent .singleViewContainer {
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    border-right: 0px;
+    padding: 0px;
+}
+
+.dropDownList {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 15px;
+}
+
+.dropDownList>span {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 15px;
+    color: #8d8f91;
+    margin-right: 5px;
+}
+
+.nav-collapse {
+    position: relative;
+    top: 22px;
+}
+
+.nav a {
+    font-size: 16px;
+    padding: 10px 5px !important;
+}
+
+.container {
+    min-height: 80px;
+}
+.brand {
+    position: absolute;
+    margin-left: 5px !important;
+    margin-right: 10px;
+    padding: 10px 0px !important;
+}
+.brand img {
+    margin-top: -5px;
+}
+@media (min-width: 768px) {
+    .nav {
+        width: 100%;
+        padding-left: 230px;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    .logout-menu {
+        float: right !important;
+    }
+
+
+    .facebookGoogle {
+        float: right;
+    }
+}
+@media (min-width: 830px) {
+    .nav a {
+        padding: 10px 10px !important;
+    }
+
+    .nav {
+        padding-left: 270px;
+    }
+
+    .brand {
+        margin-left: 10px !important;
+    }
+}
+
+@media (min-width: 1000px) {
+    .nav a {
+        padding: 10px 15px !important;
+    }
+
+    .nav {
+        padding-left: 320px;
+    }
+}
+.socialButton {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 10px;
+}
+.socialButton a {
+    color: black;
+}
+
+.footerText {
+    padding-top: 7px;
+}
+
+.jq-selectbox__select-text {
+    max-width: 120px;
+}
+
+@media (max-width: 800px) {
+    .jq-selectbox__select-text {
+        max-width: 80px;
+    }
+}
+@media (max-width: 767px) {
+
+    .cameraControls {
+        height: 300px;
+        padding-top: 10px;
+    }
+
+    .panTiltButtons > div {
+        padding-left: 50%;
+    }
+    .panTiltButtons > div > div {
+        margin-left: -90px;
+    }
+
+    .zoomButtonsContainer {
+        height: auto;
+    }
+    .panTiltButtons  {
+        border-bottom: 0px;
+        height: 230px;
+    }
+
+    .zoomButtonsContainer p {
+        text-align: center;
+    }
+
+}
+
+.navbar {
+    min-width: 300px;
+    z-index: 1001;
+}
+
+.closeButton {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.bootstrap-datetimepicker-widget {
+    height: auto;
+}
+@media (max-width: 440px) {
+    .bootstrap-datetimepicker-widget {
+        left: 10px !important;
+    }
+}
+
+.date > input {
+    width: 140px;
+}
+
+.controlPanelButtonActive, .controlPanelButtonActive:hover, .controlPanelButtonActive:focus {
+    background-image: none;
+    background-color: red;
+    border: 0px;
+    color: white;
+}
+
+#closeButton:hover {
+
+}
+.closeButton {
+    cursor: pointer;
+}
+#closeButton {
+    cursor: pointer;
+}
+.closeButton:hover {
+
+}

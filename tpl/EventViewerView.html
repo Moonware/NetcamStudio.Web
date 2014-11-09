@@ -1,0 +1,40 @@
+<div class="hero-unit">
+    <div class="row-fluid">
+        <div class="span4">
+            Display:<br/>
+            <select id="eventDisplaySelector" class="fullwidth">
+                <option value="25">25</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+                <option value="250">250</option>
+                <option value="500">500</option>
+            </select>
+        </div>
+        <div class="span4">
+            Criticality:<br/>
+            <select id="eventCriticalitySelector" class="fullwidth">
+                <option value="0">Debug</option>
+                <option value="1">Information</option>
+                <option value="2">Warning</option>
+                <option value="3">Error</option>
+                <option value="4">Critical</option>
+            </select>
+        </div>
+    </div>
+    <div id="eventViewerContent" class="eventViewerContent">
+        <table class='table table-bordered'>
+            <thead>
+            <tr>
+                <th data-attribute='Criticality'>Criticality</th>
+                <!--<th data-attribute='Hostname'>Local/Server</th>-->
+                <th data-attribute='TimeStamp'>TimeStamp</th>
+                <th data-attribute='Source'>Source</th>
+                <th data-attribute='Description'>Description</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+</div>

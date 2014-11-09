@@ -1,0 +1,66 @@
+<div class="loginForm">
+    <img src="img/logo_netcam.png"/>
+    <form class="formSignin">
+        <div class="loginTable">
+            <div class="loginTableLeftCol">
+                <% if (isLocal != true) { %>
+                <div class="loginTableCell">
+                    <p>Target server</p>
+                </div>
+                <div class="loginTableCell">
+                    <hr/>
+                    <p>Port</p>
+                </div>
+                <% } %>
+                <div class="loginTableCell">
+                    <% if (isLocal != true) { %>
+                    <hr/>
+                    <% } %>
+                    <p>Login</p>
+                </div>
+                <div class="loginTableCell">
+                    <hr/>
+                    <p>Password</p>
+                </div>
+                <div class="loginTableCell">
+                    <hr/>
+                    <p>Save password</p>
+                </div>
+            </div>
+            <div class="loginTableRightCol">
+                <% if (isLocal != true) { %>
+                <div class="loginTableCell">
+                    <input id="hostNameInput" type="text" placeholder="Hostname" class="borderTopRightRounded"/>
+                </div>
+                <div class="loginTableCell">
+                    <hr/>
+                    <input id="httpPortNumber" type="text" placeholder="Port" value="8100"/>
+                </div>
+                <% } %>
+                <div class="loginTableCell">
+                    <% if (isLocal != true) { %>
+                    <hr/>
+                    <% } %>
+                    <input id="loginUsername" type="text" placeholder="Username" value="admin" autofocus <% if (isLocal = true) { %>class="borderTopRightRounded"<% } %>>
+                </div>
+                <div class="loginTableCell">
+                    <hr/>
+                    <input id="loginPassword" type="password" class="form-control" placeholder="Password" value="1234">
+                </div>
+                <div class="loginTableCell">
+                    <hr/>
+                    <input id="savePassword" type="checkbox" value="remember-me">
+                    <label for="savePassword"> </label>
+                </div>
+            </div>
+        </div>
+        <button id="loginBtn" class="btn btn-lg btn-primary btn-block">Sign In</button>
+    </form>
+
+    <% if (isLocal == true) { %>
+    <br/>
+    <div>
+        <a class="" href="/mobile/?isLocal=true">Mobile Version</a>
+    </div>
+    <% } %>
+</div>

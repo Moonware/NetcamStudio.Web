@@ -1,0 +1,12 @@
+<!-- parameters:
+    - posterURL
+    - sourceURL
+    - videoId    -->
+<video id="<%= videoId %>"
+       class="video-js vjs-default-skin"
+       controls preload="auto"
+       poster="<%= posterURL %>">
+    <source src="<%= sourceURL %>" type='video/mp4' />
+    <source src="<%= sourceURL %>" type='video/webm' />
+    <source src="<%= sourceURL %>" type='video/ogg' />
+</video>

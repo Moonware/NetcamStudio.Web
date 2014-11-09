@@ -1,0 +1,4 @@
+<%=hasAll ? '<option value=' + NetcamAPIVars.LIBRARY_ALL_SOURCES +'>All sources</option>' : null %>
+<% _.each(cameras, function(camera){ %>
+        <option <%=camera.attributes.Id==currentId ? 'selected="selected"' : null %> value=<%=camera.attributes.Id%> ><%= '#' + camera.attributes.Id + ' - ' + camera.attributes.SourceName %></option>
+<% }) %>
