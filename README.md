@@ -3,7 +3,7 @@ Netcam Studio Web Client
 
 **Introduction:**
 
-This is the Web Client that is included with Netcam Studio.
+This is the Web Client that is included with [Netcam Studio](http://www.netcamstudio.com).
 
 It is based on [BackboneJS 1.1.2](http://backbonejs.org/).
 
