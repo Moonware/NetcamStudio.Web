@@ -1,24 +1,22 @@
-<div class="hero-unit singleViewContainer" style="padding-bottom: 20px;">
+<div class="jumbotron singleViewContainer">
 
     <div class="row-fluid liveSourceSettings">
         <div id="camListHolder" class="dropDownList">
-            <span>Source</span>
-
+            <span>Source</span><br/>
+            <select class="customSelect"></select>
         </div>
         <div id="streamModeHolder" class="dropDownList">
-            <span>Streaming mode</span>
+            <span>Streaming mode</span><br/>
             <select id="streamTypeSelector" class="customSelect">
                 <option>JPEG</option>
                 <option>MJPEG</option>
                 <option>LIVE</option>
             </select>
         </div>
-
     </div>
 
-    <div class="liveSource" id="liveSource">
-
-    </div>
+    <div class="liveSource" id="liveSource"></div>
+    <div id="cameraControlPanel" class="cameraControlPanel"></div>
 </div>
 
 <div id="cameraControls" class="cameraControls">

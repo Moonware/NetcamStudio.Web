@@ -25,9 +25,11 @@ directory.CameraView = Backbone.View.extend({
 
             this.$el.toggleClass(this.previousClassName);
 
+            /*
             this.$el.find('div').each(function(){
                 $(this).attr('style', 'width:' + self.containerSize.width + '%; height: ' +self.containerSize.height + '%;');
             });
+            */
 
             $('.overlay').remove();
 
@@ -52,9 +54,11 @@ directory.CameraView = Backbone.View.extend({
 
             this.$el.toggleClass(this.previousClassName);
 
+            /*
             this.$el.find('div').each(function(){
                 $(this).attr('style', 'width:100%; height: 100%;');
             });
+            */
 
             if( $('.overlay').length == 0 ){
                 $('body').append('<div class="overlay"></div>');
@@ -110,7 +114,11 @@ directory.CameraView = Backbone.View.extend({
         this.id = data.Id;
         this.name = '#'+this.id + " - " + data.SourceName;
 
+        console.log("Play JPEG");
         this.playJPEG();
+
+        console.log("ControlPanel");
+        this.createControlPanel();
 
         return this;
     },
@@ -127,8 +135,6 @@ directory.CameraView = Backbone.View.extend({
                 fullUrl = directory.getMJpegURL(this.id);
                 break;
         }
-
-        //console.log('this.loadImage(' + this.id + ') >> ' + fullUrl + ' >> ST ' + this.streamType);
 
         var self = this;
 
@@ -158,6 +164,7 @@ directory.CameraView = Backbone.View.extend({
             self.loadImage();
         }
     },
+
     onClose: function()
     {
         this.model.unbind("change", this.render);
@@ -186,7 +193,7 @@ directory.CameraView = Backbone.View.extend({
                 break;
         }
 
-        this.createControlPanel();
+        //this.createControlPanel();
     },
 
     setCellPercentSize: function(percentCellWidth, percentCellHeight){
@@ -194,12 +201,8 @@ directory.CameraView = Backbone.View.extend({
     },
 
     addCameraImage: function(){
-
-        this.$el.html("<div class='cameraContainerAbsolute' style='width: " + this.containerSize.width + "%; height: calc("
-            + this.containerSize.height + "% - 4px); height: -webkit-calc(" + this.containerSize.height + "% - 4px);'>"
-            + "<img src='"+ WebUIConfig.IMG_LOADING_PATH +"' "
-            + "title='" + this.name + "' id='liveImage" + this.id + "' class='webCamImage'>"
-            + "<div id='cameraControlPanel' class='cameraControlPanel'></div></div>");
+        this.$el.html("<img src='"+ WebUIConfig.IMG_LOADING_PATH +"' "
+            + "title='" + this.name + "' id='liveImage" + this.id + "' class='webCamImage'>");
 
         // handle error on loading image
         var self = this;
@@ -211,18 +214,19 @@ directory.CameraView = Backbone.View.extend({
 
     createControlPanel: function() {
 
-        //console.log('createControlPanel...');
+        console.log('createControlPanel...');
 
         var isRecording = this.model.isRecording;
         var record = "<button id='recordButton' type='button' data-type='" + (isRecording? 'record' : 'norecord')
             +"' class='btn btn-small" + (isRecording? ' controlPanelButtonActive' : '') +"'>"
-            +    "<i class='icon-facetime-video'></i>"
-            +   "</button> ";
+            +    "<span class='glyphicon glyphicon-facetime-video'></span>"
+            +   "</button>";
+
 
         var volume = '';
         if (this.model.hasAudio) {
             volume = "<button id='volumeButton' type='button' data-type='volume-up' class='btn btn-small'>"
-                +    "<i class='icon-volume-up'></i>"
+                +    "<span class='glyphicon glyphicon-volume-up'></span>"
                 +   "</button>";
         }
 
@@ -247,14 +251,15 @@ directory.CameraView = Backbone.View.extend({
             }
 
         });
+
         if (this.model.hasAudio) {
             $('#volumeButton').on('click', function() {
                 var type = $(this).data('type');
                 if (type == 'volume-off') {
-                    $(this).html("<i class='icon-volume-up'></i>");
+                    $(this).html("<span class='glyphicon glyphicon-volume-up'></span>");
                     $(this).data('type', 'volume-up');
                 } else {
-                    $(this).html("<i class='icon-volume-off'></i>");
+                    $(this).html("<span class='glyphicon glyphicon-volume-off'></span>");
                     $(this).data('type', 'volume-off');
                 }
                 self.switchAudio();
@@ -272,7 +277,10 @@ directory.CameraView = Backbone.View.extend({
             mode: 'html5'
         });
 
-        this.$el.html(this.videoPlayerView.render().el);
+
+        this.$el.html("<div id='singleVideoContainer' class='singleVideoContainer'></div>");
+
+        $('#singleVideoContainer').html(this.videoPlayerView.render(true).el);
 
         return videoObjectId;
     },
@@ -297,7 +305,7 @@ directory.CameraView = Backbone.View.extend({
 
         var self = this;
 
-        setTimeout(function(){self.loadImage()}, 250);
+        setTimeout(function(){self.loadImage()}, 50);
     },
 
     playMJPEG: function(){
@@ -369,11 +377,14 @@ directory.CameraView = Backbone.View.extend({
 
 directory.VideoPlayerView = Backbone.View.extend({
 
+    tagName: "div",
+    className: "fullsizePlayer",
+
     initialize: function(options){
         this.options = options;
     },
 
-    render: function(){
+    render: function(initPlayer){
 
         this.$el.html(this.template({
             posterURL: this.options.posterURL,
@@ -384,24 +395,24 @@ directory.VideoPlayerView = Backbone.View.extend({
 
         var self = this;
 
-        setTimeout(function(){
-            var isChrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
-            var isOpera = navigator.userAgent.toLowerCase().indexOf('opera') > -1;
-/*            var obj = {};
-            if (isChrome || isOpera)  {
-                obj = { 'techOrder': ['html5','flash']};
-            }*/
+        if (initPlayer) {
+            setTimeout(function () {
 
-	    
-	    var obj = {};
-            if(self.options.mode=='html5') {
-                obj = { 'techOrder': ['html5','flash']};
-            } else {
-                obj = { 'techOrder': ['flash','html5']};
-            }
-            videojs(self.options.videoId, obj, function(){
-            });
-        }, 100);
+                var obj = {};
+                if (self.options.mode == 'html5') {
+                    obj = {'techOrder': ['html5', 'flash']};
+                } else {
+                    obj = {'techOrder': ['flash', 'html5']};
+                }
+
+                console.log('Calling VideoJS(' + self.options.videoId + ')');
+
+                videojs(self.options.videoId, obj, function () {
+                    console.log('Called VideoJS(' + self.options.videoId + ')');
+                });
+
+            }, 50);
+        }
 
         return this;
     },

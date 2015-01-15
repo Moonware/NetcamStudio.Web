@@ -118,7 +118,8 @@ directory.Router = Backbone.Router.extend({
         "library":          "library",
         "library/:id":      "library",
         "source":           "source",
-        "source/:id":       "source"
+        "source/:id":       "source",
+        "timeline":         "timeline"
     },
 
     initialize: function () {
@@ -132,14 +133,7 @@ directory.Router = Backbone.Router.extend({
 
         this.$content = $("#content");
     },
-    /*
-    home: function () {
-        directory.shellView.selectMenuItem('home-menu');
 
-        directory.homeView = new directory.HomeView({model : directory.loggedUser});
-        this.showView(directory.homeView);
-    },
-    */
     event: function () {
         directory.shellView.selectMenuItem('event-menu');
 
@@ -165,6 +159,12 @@ directory.Router = Backbone.Router.extend({
         directory.shellView.selectMenuItem('library-menu');
         directory.libraryView = new directory.LibraryView({model: directory.libraryItems});
         this.showView(directory.libraryView);
+    },
+
+    timeline: function () {
+        directory.shellView.selectMenuItem('timeline-menu');
+        directory.timelineView = new directory.TimelineView({model: directory.timelineItems});
+        this.showView(directory.timelineView);
     },
 
     about: function () {
@@ -258,6 +258,10 @@ directory.Router = Backbone.Router.extend({
 
                     this.showView(new directory.SingleView({model: cCam}));
                 }
+                else
+                {
+                    directory.router.navigate("/login", true);
+                }
             }
         }
     },
@@ -294,7 +298,7 @@ $(document).on("ready", function () {
     directory.loadTemplates(["AboutView", "LoginView", "ContactView", "ShellAuthView", "ShellUnauthView",
         "SingleView", "MultiView", "CamListDropdownlist",
         "VideoPlayerView", "PanTiltZoomView", "AdministrationView", "ConnectedUsersView", "EventViewerView",
-        "ServerStatusView", "LibraryView"],
+        "ServerStatusView", "LibraryView", "TimelineView"],
         function () {
             directory.websiteAPI = new WebsiteAPI();
 

@@ -3,7 +3,7 @@ var NetcamAPIVars = (function(){
 
     config.EVENT_LOGS_ROW_NUMBER = 25;
     config.EVENT_LOGS_MIN_CRIT = 0;
-    config.LIBRARY_ITEMS_NUMBER = 25;
+    config.LIBRARY_ITEMS_NUMBER = 30;
     config.LIBRARY_SOURCE_ID = -1;
     config.LIBRARY_ALL_SOURCES = -1;
     config.LIBRARY_RECORDS_NUMBER = 0;
@@ -18,6 +18,9 @@ var NetcamAPIVars = (function(){
 
     config.libraryStartDate = yesterday;
     config.libraryEndDate = tomorrow;
+
+    config.Yesterday = yesterday;
+    config.Tomorrow = tomorrow;
 
     return config;
 }());

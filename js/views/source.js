@@ -15,7 +15,6 @@ directory.SourceView = Backbone.View.extend({
         {
             this.model.serverUsername = "n/a";
         }
-
         if (this.model.sessionToken == undefined)
         {
             this.model.sessionToken = "";

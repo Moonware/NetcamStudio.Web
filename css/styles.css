@@ -1,20 +1,31 @@
 body {
     font-family: source-sans-pro, sans-serif;
     font-size: 15px;
-    /*padding-top: 60px;*/
-    /*padding-bottom: 40px;*/
 }
 
-#virtualBody
+/* We don't want Jumbotron to be responsive !!! */
+.jumbotron
 {
-    /*
-    border: 1px solid red;
-    background-color: lightgray;
-    */
+    padding: 10px 10px;
+    min-height: 300px;
 }
 
-.fullwidth{
-    width: 100%;
+.timeline450
+{
+    height: 450px;
+}
+
+.brand {
+    position: relative;
+    width: 133px;
+    height: 33px;
+    margin: 0;
+    content: url("../img/logo_menu.png");
+    top: -10px;
+}
+
+.navbar-nav {
+    top: 30px;
 }
 
 .overlay {
@@ -31,13 +42,10 @@ body {
 
 .outPopUp{
     position:fixed;
-
     z-index:1002;
-
     top: 0px;
     left: 0px;
     right: 0px;
-
     text-align: center;
 }
 
@@ -45,57 +53,32 @@ body {
     opacity: 1;
 }
 
-.outPopUp > .cameraContainerAbsolute > img {
-    max-width: 100%;
-    max-height: 100%;
-    /*height: 100%;*/
-    height: auto;
-    width: auto;
-    position: absolute;
-    top: 0;
-    bottom: 0px;
-    left:0;
-    right:0;
-    padding-bottom: 4px;
-    margin: auto;
-}
-
 .outPopUp p {
     display: none;
 }
 
-.outPopUp .cameraContainer {
-    margin: 20px;
+.webCamImage{
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    border: 1px solid black;
 }
-.outPopUp .cameraContainer > div {
-    text-align: center;
-    vertical-align: middle;
+
+.outPopUp .webCamImage, .centeredImage {
+    max-width: 100%;
+    max-height: 100%;
+    height: auto;
+    width: auto;
+
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+
     position: absolute;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
-    top: 0px;
     margin: auto;
-}
-.outPopUp .cameraContainer .video-js {
-    width: 100% !important;
-    height: 100%  !important;
-}
-
-@media screen and (max-width: 650px) {
-    .outPopUp > .cameraContainerAbsolute > img {
-        max-width: 100%;
-        max-height: 100%;
-        height: auto;
-        width: 100%;
-    }
-}
-
-@media screen and (max-height: 350px) {
-    .outPopUp > .cameraContainerAbsolute > img {
-        height: auto;
-        width: auto;
-    }
+    border: 1px solid black;
 }
 
 .dropdown-menu {
@@ -113,54 +96,12 @@ body {
     display: none;
 }
 
-.webCamImage{
-    width: auto;
-    height: auto;
-
-    max-width: 100%;
-    max-height: 100%;
-}
-
-.liveImage
-{
-    width: 640px;
-    height: 320px;
-}
-
-/* Steve Override */
-
-.row-fluid.multiView [class*="span"]:first-child {
-    /* commited by Fora Soft
-    margin-left: 20px;*/
-}
-
-
 /* Steve from media < 979 */
-
 body {
     padding-top: 0;
 }
-.navbar-fixed-top,
-.navbar-fixed-bottom {
-    position: absolute;
-}
-.navbar-fixed-top {
-    margin-bottom: 20px;
-}
-.navbar-fixed-bottom {
-    margin-top: 20px;
-}
-.navbar-fixed-top .navbar-inner,
-.navbar-fixed-bottom .navbar-inner {
-    padding: 5px;
-}
-.navbar .container {
-    width: auto;
-    padding: 0;
-}
 
 /* Login */
-
 .form-server {
     margin: auto;
     max-width: 500px;
@@ -171,13 +112,15 @@ body {
     padding: 15px;
     margin: 0 auto;
 }
-.form-signin .form-signin-heading,
-.form-signin .checkbox {
+
+.form-signin .form-signin-heading, .form-signin .checkbox {
     margin-bottom: 10px;
 }
+
 .form-signin .checkbox {
     font-weight: normal;
 }
+
 .form-signin .form-control {
     position: relative;
     font-size: 16px;
@@ -187,14 +130,17 @@ body {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
+
 .form-signin .form-control:focus {
     z-index: 2;
 }
+
 .form-signin input[type="text"] {
     margin-bottom: -1px;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
 }
+
 .form-signin input[type="password"] {
     margin-bottom: 10px;
     border-top-left-radius: 0;
@@ -209,7 +155,6 @@ body {
 
 .table {
     font-size: 14px;
-    /*table-layout: fixed;*/
 }
 
 .table th {
@@ -223,11 +168,6 @@ body {
 }
 
 .table img {
-    /*
-    width: auto;
-    height: 100%;
-    */
-
     max-width: 100%;
     max-height: 100%;
 }
@@ -237,53 +177,61 @@ html, body, body > div {
 }
 
 .mainContainer {
-    position: absolute;
-    top: 110px;
-    bottom: 0px;
-    right: 0px;
-    left: 0px;
-
     min-height: 460px;
     min-width: 300px;
-
     padding: 0px;
     margin: 0px;
 }
 
+.mainContent {
+    height: auto;
+}
+
+.mainContent .singleViewContainer {
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    border-right: 0px;
+    padding: 0px;
+}
+
 .dynamicContent, .liveSource>.cameraContainer {
     background-color: #484448;
-    border-radius: 0px 0px 0px 5px;
+    border-radius: 5px;
 }
 
 .liveSourceSettings {
-    margin-right: 320px;
     background-color: #eeeeee;
-    border-right: 1px solid #dddddd;
-    height: 60px;
+    /*border-right: 1px solid #dddddd;*/
     padding-top: 15px;
-
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
     padding-left: 10px;
 }
-@media (max-width: 430px) {
-    .liveSourceSettings {
-        height: 80px;
-    }
-}
-    .cameraControls > div {
-        width: 100%;
-        height: 100%;
-    }
 
-
-.libraryContent > div {
-    width: 320px;
-    height: 300px;
-    display: inline-block;
-    overflow: hidden;
+.dropDownList {
+    padding-bottom: 15px;
     margin-right: 10px;
-    font-size: 14px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.dropDownList>span {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 15px;
+    color: #8d8f91;
+    margin-right: 5px;
+}
+
+.cameraControls > div {
+    width: 100%;
+    height: 100%;
+}
+
+.libCell {
+    text-align: center;
+}
+
+.libImage {
+    border: 1px solid black;
+    width: 95%;
 }
 
 .libraryContent > div > img {
@@ -291,377 +239,88 @@ html, body, body > div {
     height: auto;
     max-width: 100%;
     max-height: 100%;
+    border: 1px solid black;
+}
+
+.fullsizePlayer
+{
+    width: 100%;
+    height: 100%;
+    min-height: 200px;
+}
+
+.video-js {
+    width: 100% !important;
+    height: 100% !important;
 }
 
 .cameraControlPanel {
     width: 100%;
+    margin: 2px;
+    background-color: #eeeeee;
+    text-align: center;
+    vertical-align: middle;
 }
-@media (max-width: 767px) {
-    .brand {
-        top: 5px;
-    }
-    .btn-navbar {
-        margin-top: 27px !important;
-        z-index: 2;
-    }
-    .dynamicContent {
-        margin-left: -10px;
-        margin-right: -10px;
-        margin-top: 10px;
-        margin-bottom: 10px;
 
-        padding: 0px;
-    }
-
-    .dynamicContent table {
-        width: 100%;
-        height: 100%;
-
-        max-width: 100%;
-        max-height: 100%;
-        -moz-box-sizing: border-box;
-        box-sizing: border-box;
-        -webkit-box-sizing: border-box;
-        table-layout: fixed;
-    }
-
-    .cameraContainerAbsolute {
-        text-align: center;
-    }
-
-    .span4 {
-        float: left !important;
-        width: 40% !important;
-        padding-right: 10px;
-    }
-
-    .liveSource .cameraContainer .video-js {
-        width: 100% !important;
-        height: 480px !important;
-    }
-
-    .hero-unit {
-        padding-bottom: 0px !important;
-    }
+.cameraControlPanel > button {
+    margin: 5px;
 }
-@media (min-width: 768px) {
-    .mainContainer > .mainContent {
-        position: absolute;
-        top: 0px;
-        bottom: 60px;
-        right: 4px;
-        left: 4px;
-        overflow: auto;
-    }
-        .mainContainer > .mainContent > div {
-            width: 100%;
-            height: 100%;
 
-            -moz-border-radius: 7px;
-            -webkit-border-radius: 7px;
-            border-radius: 7px;
+.singleVideoContainer {
+    height: 400px;
+}
 
-            border: 1px solid #dddddd;
+.cameraContainer {
+    text-align: center;
+    vertical-align: middle;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    top: 0px;
+    margin: auto;
+    padding: 5px;
+}
 
-            -moz-box-sizing: border-box;
-            box-sizing: border-box;
-        }
+.contentNav {
+    margin-bottom: 5px;
+}
 
-            .hero-unit {
-                position: absolute;
-                top: 0px;
-                bottom: 0px;
-                left: 0px;
-                right: 0px;
-            }
-            .singleViewContainer {
-                right: 319px;
-            }
-                .contentNav div {
-                    display: inline-block;
-                }
+/* Multi-View Select */
+.contentNav div {
+    display: inline-block;
+}
 
-                .contentNav .pageNavigation {
-                    text-align: right;
-                    float: right;
-                }
+/* Previous / Next in Library */
+.contentNav .pageNavigation {
+    text-align: right;
+    float: right;
+}
 
-                .eventViewerContent {
-                    position: absolute;
-                    top: 80px;
-                    bottom: 10px;
-                    left: 0px;
-                    right: 0px;
-                    padding-left: 10px;
-                    padding-right: 10px;
-                    -moz-box-sizing: border-box;
-                    -webkit-box-sizing: border-box;
-                    box-sizing: border-box;
-                    vertical-align: top;
-                    overflow-y: auto;
-                }
+/* MultiView Selection, must be absolute !!! */
+.box > div {
+    width: 120px;
+    z-index: 10;
+    position: absolute;
+}
 
-                .libraryContent {
-                    position: absolute;
-                    top: 80px;
-                    bottom: 45px;
-                    left: 0px;
-                    right: 0px;
-                    padding-left: 10px;
-                    padding-right: 10px;
-                    -moz-box-sizing: border-box;
-                    -webkit-box-sizing: border-box;
-                    box-sizing: border-box;
-                    vertical-align: top;
-                    overflow-y: auto;
-                }
+.mainContainer > .mainContent > div {
+    width: 100%;
+    height: 100%;
+    /*border: 1px solid yellow;*/
+}
 
-                .libraryPaging {
-                    position: absolute;
-                    left: 0px;
-                    right: 0px;
-                    height: 40px;
-                    bottom: 0px;
+.dynamicContent table {
+    width: 100%;
+    height: 100%;
+    table-layout: fixed;
+    /*border: 1px solid green;*/
+}
 
-                    -moz-box-sizing: border-box;
-                    -webkit-box-sizing: border-box;
-                    box-sizing: border-box;
-
-                    text-align: center;
-                }
-
-                .pagination {
-                    margin: auto;
-                }
-
-                .liveSource {
-                    position: absolute;
-                    top: 60px;
-                    bottom: 0px;
-                    left: 0px;
-                    right: 0px;
-                    padding-left: 10px;
-                    padding-right: 10px;
-                    -moz-box-sizing: border-box;
-                    -webkit-box-sizing: border-box;
-                    box-sizing: border-box;
-                    vertical-align: top;
-                    overflow: auto;
-                }
-
-                    .cameraControls {
-                        width: 319px;
-                        height: 100%;
-                        -moz-box-sizing: border-box;
-                        box-sizing: border-box;
-                    }
-
-                    .liveSource .cameraContainer {
-
-                        position: absolute;
-                        left: 0px;
-                        right: 0px;
-                        height: 100%;
-                        -moz-box-sizing: border-box;
-                        -webkit-box-sizing: border-box;
-                        box-sizing: border-box;
-                        text-align: center;
-                        vertical-align: middle;
-                    }
-
-                    .liveSource .cameraContainer > div {
-                        text-align: center;
-                        vertical-align: middle;
-                        position: absolute;
-                        left: 0px;
-                        right: 0px;
-                        bottom: 0px;
-                        top: 0px;
-                        margin: auto;
-                    }
-                     .liveSource .cameraContainer .video-js {
-                         width: 100% !important;
-                         height: 100%  !important;
-                     }
-
-                    .liveSource .cameraContainer img{
-                        /* centering img, if image original size less than cell size */
-                        position: absolute;
-                        top: 0px;
-                        bottom: 0px;
-                        left: 0px;
-                        right: 0px;
-                        padding-left: 0px;
-                        padding-right: 0px;
-                        padding-bottom: 0px;
-                        margin: auto;
-                        -moz-box-sizing: border-box;
-                        -webkit-box-sizing: border-box;
-                        box-sizing: border-box;
-                        border: 1px solid black;
-                    }
-
-                    .cameraControls {
-                        padding-top: 0px;
-                        float: right;
-                        text-align: center;
-                        /* hack for chrome */
-                        min-width: 1px;
-                    }
-
-                    .cameraControlPanel {
-                        position: absolute;
-                    }
-
-                .dynamicContent {
-                    position: absolute;
-                    top: 50px;
-                    bottom: 10px;
-                    left: 0px;
-                    right: 0px;
-                    -moz-box-sizing: border-box;
-                    -webkit-box-sizing: border-box;
-                    box-sizing: border-box;
-                }
-
-                    .dynamicContent table {
-                        width: 100%;
-                        height: 100%;
-
-                        max-width: 100%;
-                        max-height: 100%;
-                        -moz-box-sizing: border-box;
-                        -webkit-box-sizing: border-box;
-                        box-sizing: border-box;
-                        table-layout: fixed;
-
-                        padding: 0px;
-                        margin: 0px;
-                    }
-
-                    .dynamicContent tbody {
-                        width: 100%;
-                        height: 100%;
-                        -moz-box-sizing: border-box;
-                        -webkit-box-sizing: border-box;
-                        box-sizing: border-box;
-                        padding: 0px;
-                        margin: 0px;
-                    }
-
-                    .dynamicContent td {
-                        border: 2px solid white;
-                        -moz-box-sizing: border-box;
-                        -webkit-box-sizing: border-box;
-                        box-sizing: border-box;
-                        padding: 0px;
-                        margin: 0px;
-                        vertical-align: top;
-                    }
-
-                    .dynamicContent tr {
-                        -moz-box-sizing: border-box;
-                        -webkit-box-sizing: border-box;
-                        box-sizing: border-box;
-                        padding: 0px;
-                        margin: 0px;
-                    }
-
-                        .dynamicContent .cameraContainer {
-                            width: 100%;
-                            height: 100%;
-                            -moz-box-sizing: border-box;
-                            -webkit-box-sizing: border-box;
-                            box-sizing: border-box;
-                            text-align: center;
-                            vertical-align: top;
-
-                            padding: 0px;
-                            margin: 0px;
-                        }
-                            .dynamicContent .cameraContainer .cameraContainerAbsolute {
-                                /* js set width and height */
-                                position: absolute;
-                                margin-right: -3px;
-                                margin-left: -3px;
-                                line-height: 0px;
-                                -moz-box-sizing: border-box;
-                                -webkit-box-sizing: border-box;
-                                box-sizing: border-box;
-                                vertical-align: middle;
-
-                            }
-
-                            .dynamicContent .cameraContainer img {
-                                width: auto;
-                                height: auto;
-                                max-height: 100%;
-                                max-width: 100%;
-                                -moz-box-sizing: border-box;
-                                -webkit-box-sizing: border-box;
-                                box-sizing: border-box;
-                            }
-
-                            .dynamicContent .cameraContainer .cameraContainerAbsolute img {
-
-                                /* centering img, if image original size less than cell size */
-                                position: absolute;
-                                top: 0px;
-                                bottom: 0px;
-                                left: 0px;
-                                right: 0px;
-                                padding-left: 0px;
-                                padding-right: 0px;
-                                padding-bottom: 0px;
-                                margin: auto;
-                                -moz-box-sizing: border-box;
-                                -webkit-box-sizing: border-box;
-                                box-sizing: border-box;
-                                border: 1px solid black;
-                            }
-
-                            .cameraContainer  p {
-                                position: absolute;
-
-                                padding: 10px;
-                            }
-    .mainContainer > footer {
-        padding: 0px;
-        margin: 0px;
-
-        position: absolute;
-        bottom: 0px;
-
-        width: 100%;
-        height: 60px;
-    }
-
-        .mainContainer > footer > hr {
-            padding: 0px;
-            margin: 10px;
-        }
-
-        .mainContainer > footer p {
-           padding-left: 40px;
-           padding-right: 10px;
-        }
-
-    .mainUnauthContainer>footer {
-        width:380px;
-        height:40px;
-
-        left:50%;
-        margin-left: -180px;
-    }
-
-    .panTiltButtons > div > div {
-        width: 200px;
-        height: 10px;
-        position: absolute;
-        margin-top: -100px;
-        top: 25%;
-        padding-left: 70px;
-    }
+.dynamicContent td {
+    border: 1px solid #cccccc;
+    padding: 2px;
+    margin: 2px;
+    vertical-align: middle;
 }
 
 .socialButtons {
@@ -690,12 +349,6 @@ html, body, body > div {
 
 .component-icon > img {
     display: none;
-}
-
-.box > div {
-    width: 120px;
-    z-index: 10;
-    position: absolute;
 }
 
 .datepicker {
@@ -824,34 +477,33 @@ html, body, body > div {
     height: 50%;
 }
 
-    .zoomButtonsContainer > div {
+.zoomButtonsContainer > div {
+    width: 210px;
+    height: 94px;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    margin-top: -27px;
+    margin-left: -105px;
+}
 
-        width: 210px;
-        height: 94px;
+.zoomButtonsContainer > div > p {
+    margin-top: 15px;
+    height: 20px;
+}
 
-        position: relative;
-        top: 50%;
-        left: 50%;
-        margin-top: -27px;
-        margin-left: -105px;
-    }
+.zoomButtons {
+    width: 210px;
+    height: 54px;
 
-    .zoomButtonsContainer > div > p {
-        margin-top: 15px;
-        height: 20px;
-    }
-    .zoomButtons {
-        width: 210px;
-        height: 54px;
+    background: #eeeeee;
+    border-radius: 10px;
+    border: 2px solid #dddddd;
 
-        background: #eeeeee;
-        border-radius: 10px;
-        border: 2px solid #dddddd;
-
-        -moz-box-sizing: border-box;
-        -webkit-box-sizing: border-box;
-        box-sizing: border-box;
-    }
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
 
 .zoomButton {
     background: rgba(0, 0, 0, 0);
@@ -863,14 +515,14 @@ html, body, body > div {
 }
 
 .zoomIn {
-    padding-top: 15px;
+    padding-top: 5px;
     margin-right: 15px;
     float: right;
     text-align: left;
 }
 
 .zoomOut {
-    padding-top: 13px;
+    padding-top: 3px;
     margin-left: 15px;
     float: left;
 }
@@ -921,13 +573,14 @@ html, body, body > div {
     top: 50%;
     margin-top: -250px;
 }
+
 .formSignin {
     width: 100%;
 }
+
 .loginTable {
     width: 100%;
     height: 250px;
-
     margin-top: 30px;
 }
 
@@ -935,9 +588,7 @@ html, body, body > div {
     float: left;
     width: 160px;
     height: 100%;
-
     background-color: #f0f0f0;
-
     -moz-border-radius: 5px 0px 0px 5px;
     -webkit-border-radius: 5px 0px 0px 5px;
     border-radius: 5px 0px 0px 5px;
@@ -947,13 +598,10 @@ html, body, body > div {
     padding-left: 160px;
     width: 100%;
     height: 100%;
-
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
-
     background-color: #ffffff;
-
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
@@ -962,7 +610,6 @@ html, body, body > div {
 .loginTableCell {
     width: 100%;
     height: 20%;
-
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
@@ -979,6 +626,7 @@ html, body, body > div {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
+
 .loginTableCell hr {
     position: relative;
     top: 0px;
@@ -1013,6 +661,7 @@ html, body, body > div {
 .loginTableCell>input[type="checkbox"] {
     display: none;
 }
+
 .loginTableCell>label {
     position: relative;
     top: 13px;
@@ -1024,11 +673,13 @@ html, body, body > div {
 input[type="checkbox"] {
     display:none;
 }
+
 input[type="checkbox"] + label {
     font: 18px bold;
     color: #444;
     cursor: pointer;
 }
+
 input[type="checkbox"] + label::before {
     content: "";
     display: inline-block;
@@ -1038,15 +689,19 @@ input[type="checkbox"] + label::before {
     background-image: url("../img/checkbox.png");
     background-repeat: no-repeat;
 }
+
 input[type="checkbox"] + label::before {
     background-position: 0px 0px;
 }
+
 input[type="checkbox"]:checked + label::before {
     background-position: -25px 0px;
 }
+
 input[type="checkbox"]:disabled + label::before {
     background-position: 0px 0px;
 }
+
 input[type="checkbox"]:checked:disabled + label::before {
     background-position: -25px 0px;
 }
@@ -1079,7 +734,6 @@ input[type="checkbox"]:checked:disabled + label::before {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 
-
     min-height: 570px;
     overflow: auto;
 }
@@ -1109,13 +763,7 @@ input[type="checkbox"]:checked:disabled + label::before {
     height: auto;
 }
 
-@media (min-width: 475px) {
-    .loginForm {
-        padding: 30px 20px 0px 20px;
-    }
-}
-
-@media (max-width: 475px) {
+@media (max-width: 474px) {
     .loginForm {
         padding: 30px 5px 0px 5px;
     }
@@ -1129,141 +777,54 @@ input[type="checkbox"]:checked:disabled + label::before {
     }
 }
 
-.mainContent .singleViewContainer {
-    background-color: #ffffff;
-    border: 1px solid #dddddd;
-    border-right: 0px;
-    padding: 0px;
-}
-
-.dropDownList {
-    display: inline-block;
-    vertical-align: middle;
-    margin-right: 15px;
-}
-
-.dropDownList>span {
-    font-family: 'Source Sans Pro', sans-serif;
-    font-size: 15px;
-    color: #8d8f91;
-    margin-right: 5px;
-}
-
-.nav-collapse {
-    position: relative;
-    top: 22px;
-}
-
-.nav a {
-    font-size: 16px;
-    padding: 10px 5px !important;
-}
-
-.container {
-    min-height: 80px;
-}
-.brand {
-    position: absolute;
-    margin-left: 5px !important;
-    margin-right: 10px;
-    padding: 10px 0px !important;
-}
-.brand img {
-    margin-top: -5px;
-}
-@media (min-width: 768px) {
-    .nav {
-        width: 100%;
-        padding-left: 230px;
-        -moz-box-sizing: border-box;
-        box-sizing: border-box;
-    }
-
-    .logout-menu {
-        float: right !important;
-    }
-
-
-    .facebookGoogle {
-        float: right;
-    }
-}
-@media (min-width: 830px) {
-    .nav a {
-        padding: 10px 10px !important;
-    }
-
-    .nav {
-        padding-left: 270px;
-    }
-
-    .brand {
-        margin-left: 10px !important;
+@media (min-width: 475px) {
+    .loginForm {
+        padding: 30px 20px 0px 20px;
     }
 }
 
-@media (min-width: 1000px) {
-    .nav a {
-        padding: 10px 15px !important;
-    }
-
-    .nav {
-        padding-left: 320px;
-    }
+.cameraControls {
+    height: 300px;
+    padding-top: 10px;
 }
+
+.panTiltButtons > div {
+    padding-left: 50%;
+}
+.panTiltButtons > div > div {
+    margin-left: -90px;
+}
+
+.zoomButtonsContainer {
+    height: auto;
+}
+.panTiltButtons  {
+    border-bottom: 0px;
+    height: 230px;
+}
+
+.zoomButtonsContainer p {
+    text-align: center;
+}
+
+.facebookGoogle {
+    float: right;
+}
+
 .socialButton {
     padding-left: 15px;
     padding-right: 15px;
     padding-bottom: 10px;
 }
+
 .socialButton a {
     color: black;
 }
 
 .footerText {
-    padding-top: 7px;
-}
-
-.jq-selectbox__select-text {
-    max-width: 120px;
-}
-
-@media (max-width: 800px) {
-    .jq-selectbox__select-text {
-        max-width: 80px;
-    }
-}
-@media (max-width: 767px) {
-
-    .cameraControls {
-        height: 300px;
-        padding-top: 10px;
-    }
-
-    .panTiltButtons > div {
-        padding-left: 50%;
-    }
-    .panTiltButtons > div > div {
-        margin-left: -90px;
-    }
-
-    .zoomButtonsContainer {
-        height: auto;
-    }
-    .panTiltButtons  {
-        border-bottom: 0px;
-        height: 230px;
-    }
-
-    .zoomButtonsContainer p {
-        text-align: center;
-    }
-
-}
-
-.navbar {
-    min-width: 300px;
-    z-index: 1001;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 10px;
 }
 
 .closeButton {
@@ -1279,6 +840,7 @@ input[type="checkbox"]:checked:disabled + label::before {
 .bootstrap-datetimepicker-widget {
     height: auto;
 }
+
 @media (max-width: 440px) {
     .bootstrap-datetimepicker-widget {
         left: 10px !important;
@@ -1297,14 +859,15 @@ input[type="checkbox"]:checked:disabled + label::before {
 }
 
 #closeButton:hover {
-
 }
+
 .closeButton {
     cursor: pointer;
 }
+
 #closeButton {
     cursor: pointer;
 }
-.closeButton:hover {
 
+.closeButton:hover {
 }

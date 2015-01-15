@@ -1,4 +1,6 @@
 directory.MultiView = Backbone.View.extend({
+    tagName: "div",
+    className: "multiViewContainer",
 
     startCameraIndex: 0,
 
@@ -54,7 +56,7 @@ directory.MultiView = Backbone.View.extend({
             });
             iconSelect.setSelectedIndex(self.selectedMode - 1);
             self.iconSelect = iconSelect;
-        }, 300);
+        }, 50);
 
         /*
         var self = this;
@@ -70,6 +72,7 @@ directory.MultiView = Backbone.View.extend({
         } else {
             this.isMobile = true;
         }
+
         var live = this;
         $(window).on('resize.multi',function() {
             if (!$("#my-icon-select")){
@@ -153,6 +156,7 @@ directory.MultiView = Backbone.View.extend({
         var column;
         var percentCellWidth;
         var percentCellHeight;
+
         if ($(window).width() >= 768) {
             percentCellWidth = 100 / layout.columns;
             percentCellHeight = 100 / layout.rows;
@@ -287,7 +291,6 @@ directory.MultiView = Backbone.View.extend({
     },
 
     getGridWidthFromWH: function(value){
-
         // newGrid format: w x h (3 x 3)
 
         var width = value.substr(0,1);
@@ -364,21 +367,16 @@ directory.SingleView = Backbone.View.extend({
             var cameraDropdownlist = new directory.CamListDropdownlist({collection: directory.cameras, model: self.currentCamera});
             cameraDropdownlist.render();
             self.listenTo(cameraDropdownlist, 'onCameraSelected', self.onCameraSelected);
+            //$('#camListHolder').append(cameraDropdownlist.el);
+            $('#camListHolder').html('<span>Source:</span><br/>');
             $('#camListHolder').append(cameraDropdownlist.el);
 
-            //if (self.model.isPTZAvailable){
-                var cameraControls = new directory.PanTiltZoomView({
-                    model:self.model
-                });
-                $("#cameraControls").html(cameraControls.render().el);
-            //}
+            var cameraControls = new directory.PanTiltZoomView({
+                model:self.model
+            });
+            $("#cameraControls").html(cameraControls.render().el);
 
-            setTimeout(function() {
-                $('.customSelect').styler();
-                self.currentCamera.createControlPanel();
-            }, 50);
-
-        },250);
+        },50);
 
         return this;
     },

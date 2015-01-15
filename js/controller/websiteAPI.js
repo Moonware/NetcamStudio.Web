@@ -100,6 +100,8 @@ var WebsiteAPI = function(){
                             directory.eventLogs = new directory.EventLogsCollection();
                             directory.libraryItems = new directory.LibraryItemsCollection();
 
+                            directory.timelineItems = new directory.TimelineItemsCollection();
+
                             // Automatically Get Users List from Server
                             //directory.websiteAPI.jsonGetConnectedUsers();
 
@@ -201,8 +203,19 @@ var WebsiteAPI = function(){
         directory.eventLogs.fetch();
     };
 
+    this.jsonGetTimelineItems = function() {
+        directory.timelineItems.url = getJsonRequestURL() + "/GetTimelineForPeriod?numRecords=9999"
+        + "&sourceId=" + NetcamAPIVars.LIBRARY_SOURCE_ID + "&startDate=" + NetcamAPIVars.Yesterday.getTime()
+        + "&endDate=" + NetcamAPIVars.Tomorrow.getTime()
+        + "&authToken=" + directory.loggedUser.sessionToken;
+
+        console.log('directory.timelineItems.url >> ' + directory.timelineItems.url);
+
+        directory.timelineItems.fetch();
+    };
+
     this.jsonGetLibraryItems = function() {
-        directory.libraryItems.url = getJsonRequestURL() + "/GetItemsForPeriod?numRecords=" + NetcamAPIVars.LIBRARY_RECORDS_NUMBER
+        directory.libraryItems.url = getJsonRequestURL() + "/GetItemsForPeriod?numRecords=9999"
             + "&sourceId=" + NetcamAPIVars.LIBRARY_SOURCE_ID + "&startDate=" + NetcamAPIVars.libraryStartDate.getTime()
             + "&endDate=" + NetcamAPIVars.libraryEndDate.getTime()
             + "&authToken=" + directory.loggedUser.sessionToken;

@@ -20,7 +20,7 @@ directory.LoginView = Backbone.View.extend({
             if($.cookie('hostName')) {
                 $('#hostNameInput').val($.cookie('hostName'));
             } else {
-                $('#hostNameInput').val(WebUIConfig.HOST);
+                $('#hostNameInput').val(getHost());
             }
 
             if($.cookie('httpPort')) {
@@ -57,14 +57,13 @@ directory.LoginView = Backbone.View.extend({
 
         if ((isLocal != 'true') && (isLocal != 'True'))
         {
+            // Take from FORM if not isLocal
             var hostName = $('#hostNameInput').val();
             var httpPort = $('#httpPortNumber').val();
         }
 
-        if (hostName != undefined && httpPort != 'undefined'){
-            directory.hostName = hostName;
-            directory.httpPort = httpPort;
-        }
+        directory.hostName = hostName;
+        directory.httpPort = httpPort;
 
         directory.websiteAPI.jsonLogin(directory.hostName, directory.httpPort,
             $('#loginUsername').val(), $('#loginPassword').val(), false);
