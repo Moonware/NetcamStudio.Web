@@ -23,7 +23,7 @@ directory.ConnectedUsersView = Backbone.View.extend({
     },
 
     getImgURL: function(filename) {
-        return 'http://' + directory.hostName + ':' + directory.httpPort + '/UserIcons/'+ filename;
+        return directory.httpPrefix + '://' + directory.hostName + ':' + directory.httpPort + '/UserIcons/'+ filename;
     },
 
     addTable: function() {

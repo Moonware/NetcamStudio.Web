@@ -1,6 +1,6 @@
-<div class="jumbotron singleViewContainer">
+<div class="jumbotron">
 
-    <div class="row-fluid liveSourceSettings">
+    <div class="row-fluid">
         <div id="camListHolder" class="dropDownList">
             <span>Source</span><br/>
             <select class="customSelect"></select>
@@ -9,6 +9,9 @@
             <span>Streaming mode</span><br/>
             <select id="streamTypeSelector" class="customSelect">
                 <option>JPEG</option>
+                <% if (isMotionDetection) { %>
+                <option>MOTION</option>
+                <% } %>
                 <option>MJPEG</option>
                 <option>LIVE</option>
             </select>
@@ -16,9 +19,11 @@
     </div>
 
     <div class="liveSource" id="liveSource"></div>
+
     <div id="cameraControlPanel" class="cameraControlPanel"></div>
-</div>
-
-<div id="cameraControls" class="cameraControls">
 
 </div>
+
+<% if (showPTZ) { %>
+    <div id="cameraControls" class="cameraControls"></div>
+<% } %>

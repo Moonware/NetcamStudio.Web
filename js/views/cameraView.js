@@ -111,13 +111,12 @@ directory.CameraView = Backbone.View.extend({
 
         var data = _.clone(this.model.attributes);
 
-        this.id = data.Id;
-        this.name = '#'+this.id + " - " + data.SourceName;
+        //this.id = data.Id;
+        this.name = '#'+data.Id + " - " + data.SourceName;
 
-        console.log("Play JPEG");
         this.playJPEG();
+        this.streamType = directory.StreamType.JPEG;
 
-        console.log("ControlPanel");
         this.createControlPanel();
 
         return this;
@@ -129,18 +128,21 @@ directory.CameraView = Backbone.View.extend({
 
         switch (this.streamType){
             case directory.StreamType.JPEG:
-                fullUrl = directory.getJpegURL(this.id);
+                fullUrl = directory.getJpegURL(this.model.attributes.Id);
+                break;
+            case directory.StreamType.MOTION:
+                fullUrl = directory.getMotionURL(this.model.attributes.Id);
                 break;
             case directory.StreamType.MJPEG:
-                fullUrl = directory.getMJpegURL(this.id);
+                fullUrl = directory.getMJpegURL(this.model.attributes.Id);
                 break;
         }
 
         var self = this;
 
-        if (this.streamType == directory.StreamType.JPEG)
+        if (this.streamType == directory.StreamType.JPEG || this.streamType == directory.StreamType.MOTION)
         {
-            $('#liveImage' + this.id).one('load',function() {
+            $('#liveImage' + this.model.attributes.Id).one('load',function() {
                 if (directory.isFullScreenMode && !self.isZoomed) {
                     self.checkEscapeFromFullScreen();
                 } else {
@@ -151,7 +153,7 @@ directory.CameraView = Backbone.View.extend({
             });
         }
 
-        $('#liveImage' + this.id).attr('src', fullUrl);
+        $('#liveImage' + this.model.attributes.Id).attr('src', fullUrl);
     },
 
     checkEscapeFromFullScreen: function() {
@@ -181,6 +183,11 @@ directory.CameraView = Backbone.View.extend({
         switch(streamType){
             case directory.StreamType.JPEG:
                 this.playJPEG();
+                this.streamType = directory.StreamType.JPEG;
+                break;
+            case directory.StreamType.MOTION:
+                this.playJPEG();
+                this.streamType = directory.StreamType.MOTION;
                 break;
             case directory.StreamType.MJPEG:
                 this.playMJPEG();
@@ -202,11 +209,11 @@ directory.CameraView = Backbone.View.extend({
 
     addCameraImage: function(){
         this.$el.html("<img src='"+ WebUIConfig.IMG_LOADING_PATH +"' "
-            + "title='" + this.name + "' id='liveImage" + this.id + "' class='webCamImage'>");
+            + "title='" + this.name + "' id='liveImage" + this.model.attributes.Id + "' class='webCamImage'>");
 
         // handle error on loading image
         var self = this;
-        $('#liveImage' + this.id).error(function () {
+        $('#liveImage' + this.model.attributes.Id).error(function () {
             $(this).unbind("error").attr("src", WebUIConfig.IMG_OFFLINE_PATH);
             self.running = false;
         });
@@ -214,7 +221,7 @@ directory.CameraView = Backbone.View.extend({
 
     createControlPanel: function() {
 
-        console.log('createControlPanel...');
+        //console.log('createControlPanel...');
 
         var isRecording = this.model.isRecording;
         var record = "<button id='recordButton' type='button' data-type='" + (isRecording? 'record' : 'norecord')
@@ -240,13 +247,13 @@ directory.CameraView = Backbone.View.extend({
                 $(this).addClass('controlPanelButtonActive');
                 $(this).data('type', 'record');
 
-                directory.websiteAPI.jsonStartStopRecording(self.id, true);
+                directory.websiteAPI.jsonStartStopRecording(self.model.attributes.Id, true);
                 self.model.isRecording = true;
             } else {
                 $(this).removeClass('controlPanelButtonActive');
                 $(this).data('type', 'norecord');
 
-                directory.websiteAPI.jsonStartStopRecording(self.id, false);
+                directory.websiteAPI.jsonStartStopRecording(self.model.attributes.Id, false);
                 self.model.isRecording = false;
             }
 
@@ -268,15 +275,14 @@ directory.CameraView = Backbone.View.extend({
     },
 
     addVideoObject:function() {
-        var videoObjectId = "videoObject_" + this.id;
+        var videoObjectId = "videoObject_" + this.model.attributes.Id;
 
         this.videoPlayerView = new directory.VideoPlayerView({
-            posterURL: directory.getJpegURL(this.id),
-            sourceURL: directory.getLiveURL(this.id),
+            posterURL: directory.getJpegURL(this.model.attributes.Id),
+            sourceURL: directory.getLiveURL(this.model.attributes.Id),
             videoId: videoObjectId,
             mode: 'html5'
         });
-
 
         this.$el.html("<div id='singleVideoContainer' class='singleVideoContainer'></div>");
 
@@ -292,12 +298,9 @@ directory.CameraView = Backbone.View.extend({
             if (this.videoPlayerView != undefined)
             {
                 this.videoPlayerView.onClose();
-                // we need to clear video element
                 this.videoPlayerView.$el.remove();
             }
         }
-
-        this.streamType = directory.StreamType.JPEG;
 
         this.addCameraImage();
 
@@ -331,9 +334,9 @@ directory.CameraView = Backbone.View.extend({
 
         this.running = false;
 
-        if (this.streamType == directory.StreamType.JPEG || this.streamType == directory.StreamType.MJPEG){
+        if (this.streamType == directory.StreamType.JPEG || this.streamType == directory.StreamType.MOTION || this.streamType == directory.StreamType.MJPEG){
             // we need to remove image element
-            $('#liveImage' + this.id).remove();
+            $('#liveImage' + this.model.attributes.Id).remove();
         }
 
         this.addVideoObject();
@@ -352,7 +355,7 @@ directory.CameraView = Backbone.View.extend({
             this.audio = null;
         } else {
 
-            aUrl = directory.getAudioURL(this.id);
+            aUrl = directory.getAudioURL(this.model.attributes.Id);
             console.log("Audio Request >> " + aUrl);
 
             this.audio = soundManager.createSound({
@@ -449,35 +452,34 @@ directory.PanTiltZoomView = Backbone.View.extend({
 
         var data = _.clone(this.model.attributes);
 
-        this.id = data.Id;
-
+        //this.id = data.Id;
         this.$el.html(this.template());
 
         return this;
     },
 
     zoomIn: function(event){
-        directory.websiteAPI.SendPTZCommandJson(this.id, directory.websiteAPI.PtzCommand.ZoomIn);
+        directory.websiteAPI.SendPTZCommandJson(this.model.attributes.Id, directory.websiteAPI.PtzCommand.ZoomIn);
     },
 
     zoomOut: function(event){
-        directory.websiteAPI.SendPTZCommandJson(this.id, directory.websiteAPI.PtzCommand.ZoomOut);
+        directory.websiteAPI.SendPTZCommandJson(this.model.attributes.Id, directory.websiteAPI.PtzCommand.ZoomOut);
     },
 
     panLeft: function(event){
-        directory.websiteAPI.SendPTZCommandJson(this.id, directory.websiteAPI.PtzCommand.Left);
+        directory.websiteAPI.SendPTZCommandJson(this.model.attributes.Id, directory.websiteAPI.PtzCommand.Left);
     },
 
     panRight: function(event){
-        directory.websiteAPI.SendPTZCommandJson(this.id, directory.websiteAPI.PtzCommand.Right);
+        directory.websiteAPI.SendPTZCommandJson(this.model.attributes.Id, directory.websiteAPI.PtzCommand.Right);
     },
 
     tiltUp: function(event){
-        directory.websiteAPI.SendPTZCommandJson(this.id, directory.websiteAPI.PtzCommand.Up);
+        directory.websiteAPI.SendPTZCommandJson(this.model.attributes.Id, directory.websiteAPI.PtzCommand.Up);
     },
 
     tiltDown: function(event){
-        directory.websiteAPI.SendPTZCommandJson(this.id, directory.websiteAPI.PtzCommand.Down);
+        directory.websiteAPI.SendPTZCommandJson(this.model.attributes.Id, directory.websiteAPI.PtzCommand.Down);
     }
 
 });

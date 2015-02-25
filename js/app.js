@@ -1,5 +1,6 @@
 var directory = {
 
+    httpPrefix: WebUIConfig.HTTP_PREFIX,
     hostName: WebUIConfig.HOST,
     httpPort: WebUIConfig.HTTP_PORT,
 
@@ -31,23 +32,29 @@ var directory = {
     getJpegURL: function(cameraId){
         var uniq1 = Math.random();
 
-        return "http://" + directory.hostName + ":" + directory.httpPort + "/jpeg/" + cameraId + "?uniq=" + uniq1 + "&authToken=" + directory.loggedUser.sessionToken;
+        return directory.httpPrefix + "://" + directory.hostName + ":" + directory.httpPort + "/Jpeg/" + cameraId + "?uniq=" + uniq1 + "&authToken=" + directory.loggedUser.sessionToken;
+    },
+
+    getMotionURL: function(cameraId){
+        var uniq1 = Math.random();
+
+        return directory.httpPrefix + "://" + directory.hostName + ":" + directory.httpPort + "/Motion/" + cameraId + "?uniq=" + uniq1 + "&authToken=" + directory.loggedUser.sessionToken;
     },
 
     getAudioURL: function(cameraId){
         var uniq1 = Math.random();
 
-        return "http://" + directory.hostName + ":" + directory.httpPort + "/audio/" + cameraId + "?uniq=" + uniq1 + "&authToken=" + directory.loggedUser.sessionToken;
+        return directory.httpPrefix + "://" + directory.hostName + ":" + directory.httpPort + "/Audio/" + cameraId + "?uniq=" + uniq1 + "&authToken=" + directory.loggedUser.sessionToken;
     },
 
     getMJpegURL: function(cameraId){
         var uniq1 = Math.random();
 
-        return "http://" + directory.hostName + ":" + directory.httpPort + "/mjpeg/" + cameraId + "?uniq=" + uniq1 + "&authToken=" + directory.loggedUser.sessionToken;
+        return directory.httpPrefix + "://" + directory.hostName + ":" + directory.httpPort + "/Mjpeg/" + cameraId + "?uniq=" + uniq1 + "&authToken=" + directory.loggedUser.sessionToken;
     },
 
     getLiveURL: function(cameraId){
-        return "http://" + directory.hostName + ":" + directory.httpPort + "/live/" + cameraId + "?authToken=" + directory.loggedUser.sessionToken;
+        return directory.httpPrefix + "://" + directory.hostName + ":" + directory.httpPort + "/Live/" + cameraId + "?authToken=" + directory.loggedUser.sessionToken;
     },
 
     getLibraryURL: function(id, itemType, isThumb) {
@@ -55,7 +62,7 @@ var directory = {
         var ext =  itemType == 1 ?  "jpg" : "mp4";
         if (isThumb) ext = "jpg";
 
-        return "http://" + directory.hostName + ":" + directory.httpPort + "/Library/" + thumb + id +"." + ext + "?authToken=" + directory.loggedUser.sessionToken;
+        return directory.httpPrefix + "://" + directory.hostName + ":" + directory.httpPort + "/Library/" + thumb + id +"." + ext + "?authToken=" + directory.loggedUser.sessionToken;
     },
 
     /*
@@ -241,7 +248,7 @@ directory.Router = Backbone.Router.extend({
         }
         else
         {
-            console.log('Displaying source ' + id + ' / ' + directory.cameras.length);
+            //console.log('Displaying source ' + id + ' / ' + directory.cameras.length);
 
             if (id == undefined)
             {
@@ -254,10 +261,10 @@ directory.Router = Backbone.Router.extend({
 
                 if (cCam && cCam.attributes)
                 {
-                    console.log('Selected Camera [' + id + '] ' + ' / ' + directory.cameras.length + cCam.attributes.Id + ' ' + cCam.attributes.SourceName);
+                    //console.log('Selected Camera ' + id + ' ' + ' / ' + directory.cameras.length + " - #" + cCam.attributes.Id + ' ' + cCam.attributes.SourceName);
 
                     this.showView(new directory.SingleView({model: cCam}));
-                }
+            }
                 else
                 {
                     directory.router.navigate("/login", true);

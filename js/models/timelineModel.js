@@ -52,13 +52,13 @@ directory.TimelineItemsCollection = Backbone.Collection.extend({
                                     console.log('VPlayer >> ' + currentAsset.asset.media);
                                     */
 
-                                    currentAsset.asset.media = 'http://' + directory.hostName + ':' + directory.httpPort + currentAsset.asset.media + '?authToken=' + directory.loggedUser.sessionToken;
+                                    currentAsset.asset.media = directory.httpPrefix + '://' + directory.hostName + ':' + directory.httpPort + currentAsset.asset.media + '?authToken=' + directory.loggedUser.sessionToken;
 
                                     //currentAsset.asset.media = 'http://' + directory.hostName + ':' + directory.httpPort + currentAsset.asset.media + '?authToken=' + directory.loggedUser.sessionToken;
                                 }
 
                                 if (currentAsset.asset.thumbnail !== undefined) {
-                                    currentAsset.asset.thumbnail = 'http://' + directory.hostName + ':' + directory.httpPort + currentAsset.asset.thumbnail + '?authToken=' + directory.loggedUser.sessionToken;
+                                    currentAsset.asset.thumbnail = directory.httpPrefix + '://' + directory.hostName + ':' + directory.httpPort + currentAsset.asset.thumbnail + '?authToken=' + directory.loggedUser.sessionToken;
                                 }
                             }
 

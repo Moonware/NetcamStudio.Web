@@ -54,6 +54,7 @@ directory.LoginView = Backbone.View.extend({
 
         var hostName = getHost();
         var httpPort = getPort();
+        var httpPrefix = getHttpPrefix();
 
         if ((isLocal != 'true') && (isLocal != 'True'))
         {
@@ -62,6 +63,7 @@ directory.LoginView = Backbone.View.extend({
             var httpPort = $('#httpPortNumber').val();
         }
 
+        directory.httpPrefix = httpPrefix;
         directory.hostName = hostName;
         directory.httpPort = httpPort;
 

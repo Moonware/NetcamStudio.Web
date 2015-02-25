@@ -2,7 +2,8 @@ var WebUIConfig = (function(){
     var config = {};
 
     // net settings
-    //config.HOST = "localhost";
+    config.HOST = "localhost";
+    config.HTTP_PREFIX = "http";
     config.HTTP_PORT = "8100";
     config.LOGIN = "admin";
     config.PASSWORD = "1234";

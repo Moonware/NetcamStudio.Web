@@ -82,7 +82,7 @@ directory.MultiView = Backbone.View.extend({
             if ((live.isMobile && $(window).width() >= 768) || (!live.isMobile && $(window).width() < 768)) {
                 var outPopUp = $('.outPopUp');
                 if (outPopUp != null) {
-                    _.each(self.cams, function(camera) {
+                    _.each(self.cams, function(camera, key) {
                         if (camera.isZoomed) {
                             camera.onClick();
                         }
@@ -102,7 +102,7 @@ directory.MultiView = Backbone.View.extend({
 
     render:function () {
 
-        console.log('Rendering MultiView...');
+        //console.log('Rendering MultiView...');
 
         this.$el.html(this.template());
 
@@ -110,7 +110,7 @@ directory.MultiView = Backbone.View.extend({
 
         // we only create camera views and store them in array
 
-        _.each(self.model.models, function (camera) {
+        _.each(self.model.models, function (camera, key) {
 
             var cCam = new directory.CameraView({
                     model:camera,
@@ -124,8 +124,6 @@ directory.MultiView = Backbone.View.extend({
         setTimeout(function() {
             self.drawElements();
         }, 100);
-
-        console.log('Rendering MultiView >> RENDERED...');
 
         return this;
     },
@@ -268,7 +266,7 @@ directory.MultiView = Backbone.View.extend({
 
     onClose: function()
     {
-        _.each(this.cams, function(camera) {
+        _.each(this.cams, function(camera, key) {
             camera.close();
         }, this);
 
@@ -307,9 +305,7 @@ directory.CamListDropdownlist = Backbone.View.extend({
     events: {
         'change': function(event){
             var selectedCamName = event.target.value;
-
-            console.log("Camera selected: " + selectedCamName);
-
+            //console.log("Camera selected: " + selectedCamName);
             this.trigger('onCameraSelected', [selectedCamName])
         }
     },
@@ -319,18 +315,12 @@ directory.CamListDropdownlist = Backbone.View.extend({
         this.hasAll = false;
     },
 
-    render: function(){
+    render: function(targetId){
         this.$el.empty();
-        var id = NetcamAPIVars.LIBRARY_SOURCE_ID;
-        if (this.model) {
-            if (this.model.id) {
-                id = this.model.id;
-            } else if (this.model.attributes) {
-                id = this.model.attributes.Id;
-            }
-        }
 
-        this.$el.html(this.template({cameras: this.collection.models, currentId: id, hasAll: this.hasAll}));
+        //console.log ("Rendering Dropdowns Template [src " + targetId + "]");
+
+        this.$el.html(this.template({cameras: this.collection.models, currentId: targetId, hasAll: this.hasAll}));
 
         return this;
     }
@@ -347,9 +337,13 @@ directory.SingleView = Backbone.View.extend({
     },
 
     render:function () {
-        console.log('Rendering SingleView...');
+        //console.log('Rendering SingleView...');
 
-        this.$el.html(this.template());
+        var isMotDet = this.model.attributes.Status.IsMotionDetector;
+        var showPTZ = this.model.attributes.Status.HasPTZ & directory.loggedUser.ptzEnabled;
+
+        //TODO: Implement Show PTZ
+        this.$el.html(this.template({isMotionDetection: isMotDet, showPTZ: showPTZ}));
 
         var self = this;
 
@@ -364,16 +358,21 @@ directory.SingleView = Backbone.View.extend({
 
             self.currentCamera.switchAudio();
 
-            var cameraDropdownlist = new directory.CamListDropdownlist({collection: directory.cameras, model: self.currentCamera});
-            cameraDropdownlist.render();
+            //console.log('Rendering DropDown for ' + self.currentCamera.model.attributes.Id );
+            //model: self.currentCamera
+
+            var cameraDropdownlist = new directory.CamListDropdownlist({collection: directory.cameras});
+            cameraDropdownlist.render(self.currentCamera.model.attributes.Id);
+
             self.listenTo(cameraDropdownlist, 'onCameraSelected', self.onCameraSelected);
-            //$('#camListHolder').append(cameraDropdownlist.el);
+
             $('#camListHolder').html('<span>Source:</span><br/>');
             $('#camListHolder').append(cameraDropdownlist.el);
 
             var cameraControls = new directory.PanTiltZoomView({
                 model:self.model
             });
+
             $("#cameraControls").html(cameraControls.render().el);
 
         },50);
@@ -393,6 +392,10 @@ directory.SingleView = Backbone.View.extend({
         switch(streamTypeName){
             case "JPEG":
                 this.currentCamera.setStreamType(directory.StreamType.JPEG);
+                this.currentCamera.switchAudio();
+                break;
+            case "MOTION":
+                this.currentCamera.setStreamType(directory.StreamType.MOTION);
                 this.currentCamera.switchAudio();
                 break;
             case "MJPEG":

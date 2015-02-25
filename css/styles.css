@@ -6,7 +6,8 @@ body {
 /* We don't want Jumbotron to be responsive !!! */
 .jumbotron
 {
-    padding: 10px 10px;
+    border: 1px solid #dddddd;
+    padding: 15px;
     min-height: 300px;
 }
 
@@ -43,9 +44,9 @@ body {
 .outPopUp{
     position:fixed;
     z-index:1002;
-    top: 0px;
-    left: 0px;
-    right: 0px;
+    top: 0;
+    left: 0;
+    right: 0;
     text-align: center;
 }
 
@@ -179,31 +180,17 @@ html, body, body > div {
 .mainContainer {
     min-height: 460px;
     min-width: 300px;
-    padding: 0px;
-    margin: 0px;
+    padding: 0;
+    margin: 0;
 }
 
 .mainContent {
     height: auto;
 }
 
-.mainContent .singleViewContainer {
-    background-color: #ffffff;
-    border: 1px solid #dddddd;
-    border-right: 0px;
-    padding: 0px;
-}
-
 .dynamicContent, .liveSource>.cameraContainer {
     background-color: #484448;
     border-radius: 5px;
-}
-
-.liveSourceSettings {
-    background-color: #eeeeee;
-    /*border-right: 1px solid #dddddd;*/
-    padding-top: 15px;
-    padding-left: 10px;
 }
 
 .dropDownList {
@@ -273,10 +260,10 @@ html, body, body > div {
 .cameraContainer {
     text-align: center;
     vertical-align: middle;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
-    top: 0px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
     margin: auto;
     padding: 5px;
 }
@@ -410,7 +397,7 @@ html, body, body > div {
     background: -ms-linear-gradient(top, #0179ce 0%,#005d9f 100%); /* IE10+ */
     background: linear-gradient(to bottom, #0179ce 0%,#005d9f 100%); /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0179ce', endColorstr='#005d9f',GradientType=0 ); /* IE6-9 */
-    border: 0px;
+    border: 0;
     color: white;
 }
 .panTiltUp {
@@ -421,7 +408,7 @@ html, body, body > div {
     -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=0.083)"; /* IE8 */
 
     position: absolute;
-    margin-top: 0px;
+    margin-top: 0;
     margin-left: 60px;
     display: block;
 }
@@ -454,7 +441,7 @@ html, body, body > div {
 .panTiltLeft {
     position: absolute;
     margin-top: 50px;
-    margin-left: 0px;
+    margin-left: 0;
     display: block;
 }
 
@@ -589,9 +576,9 @@ html, body, body > div {
     width: 160px;
     height: 100%;
     background-color: #f0f0f0;
-    -moz-border-radius: 5px 0px 0px 5px;
-    -webkit-border-radius: 5px 0px 0px 5px;
-    border-radius: 5px 0px 0px 5px;
+    -moz-border-radius: 5px 0 0 5px;
+    -webkit-border-radius: 5px 0 0 5px;
+    border-radius: 5px 0 0 5px;
 }
 
 .loginTableRightCol {
@@ -618,8 +605,8 @@ html, body, body > div {
 }
 
 .loginTableCell p {
-    padding: 0px;
-    margin: 0px;
+    padding: 0;
+    margin: 0;
     position: relative;
     top: 15px;
     -moz-box-sizing: border-box;
@@ -629,30 +616,30 @@ html, body, body > div {
 
 .loginTableCell hr {
     position: relative;
-    top: 0px;
+    top: 0;
     width: 100%;
     border: none;
     height: 1px;
     color: #b0b0b0;
     background-color: #b0b0b0;
-    padding: 0px;
-    margin: 0px;
+    padding: 0;
+    margin: 0;
 }
 
 .loginTableCell>input {
-    border: 0px;
+    border: 0;
     width: 100%;
     height: 100%;
 
-    padding: 0px 0px 0px 10px;
-    margin: 0px;
+    padding: 0 0 0 10px;
+    margin: 0;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 
-    -moz-border-radius: 0px;
-    -webkit-border-radius: 0px;
-    border-radius: 0px;
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    border-radius: 0;
 
     font-family: 'Source Sans Pro', sans-serif;
     font-size: 12pt;
@@ -691,19 +678,19 @@ input[type="checkbox"] + label::before {
 }
 
 input[type="checkbox"] + label::before {
-    background-position: 0px 0px;
+    background-position: 0 0;
 }
 
 input[type="checkbox"]:checked + label::before {
-    background-position: -25px 0px;
+    background-position: -25px 0;
 }
 
 input[type="checkbox"]:disabled + label::before {
-    background-position: 0px 0px;
+    background-position: 0 0;
 }
 
 input[type="checkbox"]:checked:disabled + label::before {
-    background-position: -25px 0px;
+    background-position: -25px 0;
 }
 
 .halfWidth {
@@ -718,17 +705,17 @@ input[type="checkbox"]:checked:disabled + label::before {
 }
 
 .borderTopRightRounded {
-    -moz-border-radius: 0px 5px 0px 0px !important;
-    -webkit-border-radius: 0px 5px 0px 0px !important;
-    border-radius: 0px 5px 0px 0px !important;
+    -moz-border-radius: 0 5px 0 0 !important;
+    -webkit-border-radius: 0 5px 0 0 !important;
+    border-radius: 0 5px 0 0 !important;
 }
 
 .mainUnauthContainer {
     position: absolute;
-    top: 0px;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
 
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -758,14 +745,14 @@ input[type="checkbox"]:checked:disabled + label::before {
 
 .mainUnauthContainer>footer {
     position: absolute;
-    bottom: 0px;
+    bottom: 0;
     width: auto;
     height: auto;
 }
 
 @media (max-width: 474px) {
     .loginForm {
-        padding: 30px 5px 0px 5px;
+        padding: 30px 5px 0 5px;
     }
 
     .loginTableLeftCol {
@@ -779,7 +766,7 @@ input[type="checkbox"]:checked:disabled + label::before {
 
 @media (min-width: 475px) {
     .loginForm {
-        padding: 30px 20px 0px 20px;
+        padding: 30px 20px 0 20px;
     }
 }
 
@@ -799,7 +786,7 @@ input[type="checkbox"]:checked:disabled + label::before {
     height: auto;
 }
 .panTiltButtons  {
-    border-bottom: 0px;
+    border-bottom: 0;
     height: 230px;
 }
 
@@ -848,13 +835,13 @@ input[type="checkbox"]:checked:disabled + label::before {
 }
 
 .date > input {
-    width: 140px;
+    width: 160px;
 }
 
 .controlPanelButtonActive, .controlPanelButtonActive:hover, .controlPanelButtonActive:focus {
     background-image: none;
     background-color: red;
-    border: 0px;
+    border: 0;
     color: white;
 }
 

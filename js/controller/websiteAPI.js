@@ -1,13 +1,13 @@
 var WebsiteAPI = function(){
 
     var getJsonRequestURL = function (){
-        return 'http://' + directory.hostName + ':' + directory.httpPort + '/Json';
-    }
+        return directory.httpPrefix + '://' + directory.hostName + ':' + directory.httpPort + '/Json';
+    };
 
     var addAuth = function(object){
         object['authToken'] = directory.loggedUser.sessionToken;
         return object;
-    }
+    };
 
     var toParam = function(data){
         var delimiter = "&";
@@ -24,7 +24,7 @@ var WebsiteAPI = function(){
         }
 
         return response;
-    }
+    };
 
     this.jsonLogin = function(serverHost, serverPort, username, password, savePassword){
 
@@ -34,8 +34,6 @@ var WebsiteAPI = function(){
             // username / password
             var queryParams = 'username=' + username + '&password=' + password;
             var jsonCommand = getJsonRequestURL() +  '/Login?' + queryParams;
-
-            console.log('Login >> ' + jsonCommand);
 
             $.ajax({
                 url: jsonCommand,
@@ -47,15 +45,15 @@ var WebsiteAPI = function(){
 
                     if (data != undefined)
                     {
+                        /*
                         $.each(data, function(index, value) {
                             console.log('Login Response [' + index + '] : ' + value);
                         });
+                        */
 
                         if (data.IsAuthenticated == true)
                         {
                             console.log('Session Token Received : ' + data.SessionToken);
-
-                            //directory.loggedUser = new directory.UserModel();
 
                             $.cookie('hostName', serverHost, { expires: 365 });
                             $.cookie('httpPort', serverPort, { expires: 365 });
@@ -74,7 +72,25 @@ var WebsiteAPI = function(){
                             directory.loggedUser.serverPort = serverPort;
                             directory.loggedUser.serverUsername = username;
 
-                            directory.loggedUser.serverQueryUrl = 'http://' + serverHost + ':' + serverPort + '/Json/';
+                            var canPTZ = false;
+
+                            if (data.Roles !== undefined) {
+
+                                $.each(data.Roles, function (index, value) {
+
+                                    //console.log('Role[' + index + '] >> ' + value.Name);
+
+                                    if ((value.Name !== undefined) && ((value.Name == "Administrator" || value.Name == "Control PTZ")))
+                                    {
+                                        canPTZ = true;
+                                    }
+                                });
+                            }
+
+                            // TODO: Check in roles
+                            directory.loggedUser.ptzEnabled = canPTZ;
+
+                            directory.loggedUser.serverQueryUrl = directory.HTTP_PREFIX + '://' + serverHost + ':' + serverPort + '/Json/';
 
                             if (savePassword)
                             {
@@ -138,9 +154,11 @@ var WebsiteAPI = function(){
                 error: function(err) {
                     console.log('Login Failed: ' + err);
 
+                    /*
                     $.each(err, function(index, value) {
                         console.log('Login Response [' + index + '] : ' + value);
                     });
+                    */
 
                     var errMsg = '';
                     if (err.status == 0)

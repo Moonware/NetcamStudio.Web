@@ -9,6 +9,7 @@ directory.Camera = Backbone.Model.extend({
     //urlRoot:"http://localhost:8124/Json/GetCameras",
 
     initialize:function () {
+        /*
         console.log('----------------------------');
         console.log('New Camera object created...');
         console.log('----------------------------');
@@ -22,6 +23,7 @@ directory.Camera = Backbone.Model.extend({
         });
 
         console.log('');
+        */
 
         this.isPTZAvailable = this.attributes.Status.HasPTZ;
         this.hasAudio = this.attributes.Status.HasAudio;
@@ -40,12 +42,19 @@ directory.CameraCollection = Backbone.Collection.extend({
         this.on('sync', function(){
             console.log('Camera collection received');
 
+            // tweak the collection by adding the internalId
+
+            var internalId = 0;
+            _(this.models).each(function(camera) {
+                //console.log("Setting internal id " + internalId + " for #" + camera.attributes.Id);
+                camera.attributes.InternalId = internalId;
+                internalId++;
+            });
+
+
             directory.router.navigateToSource(0);
         });
     }
-    /*,
-    urlRoot: "http://localhost:8124/Json/GetCameras"
-    */
 });
 
 var originalSync = Backbone.sync;

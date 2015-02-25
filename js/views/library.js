@@ -110,10 +110,12 @@ directory.LibraryView = Backbone.View.extend({
             currentRow.append(libItem.render().el);
         }
 
-        var cameraDropdownlist = new directory.CamListDropdownlist({collection: directory.cameras,
-            model: directory.cameras.at(NetcamAPIVars.LIBRARY_SOURCE_ID)});
+        // model: directory.cameras.at(NetcamAPIVars.LIBRARY_SOURCE_ID)
+
+        var cameraDropdownlist = new directory.CamListDropdownlist({collection: directory.cameras});
         cameraDropdownlist.hasAll = true;
-        cameraDropdownlist.render();
+        cameraDropdownlist.render(NetcamAPIVars.LIBRARY_SOURCE_ID);
+
         self.listenTo(cameraDropdownlist, 'onCameraSelected', self.onCameraSelected);
         $('#libCamListHolder').html('<span>Source:</span><br/>');
         $('#libCamListHolder').append(cameraDropdownlist.el);

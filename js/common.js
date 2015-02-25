@@ -30,6 +30,16 @@ function getURLVar(urlVarName) {
     return urlVarValue;
 }
 
+function getHttpPrefix() {
+    var urlHost = String(document.location).split(':');
+    var urlPrefix = 'http';
+
+    if(urlHost[0])
+        urlPrefix = urlHost[0];
+
+    return urlPrefix;
+}
+
 function getHost() {
     return document.location.hostname;
 }

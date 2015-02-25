@@ -33,7 +33,7 @@ directory.AdministrationView = Backbone.View.extend({
         adminContent.empty();
         var mode = $("#adminViewGrid").val();
 
-        console.log('Rendering admin panel >> ' + mode);
+        //console.log('Rendering admin panel >> ' + mode);
 
         switch (mode){
             case this.const.CONNECTED_USER:

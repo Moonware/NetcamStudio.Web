@@ -1,7 +1,6 @@
 directory.SourceView = Backbone.View.extend({
 
     events:{
-        "click #showMeBtn":"showMeBtnClick",
         "click #serverBtn":"serverBtnClick",
         "click #getSourcesBtn":"getSourcesBtnClick"
     },
@@ -24,11 +23,6 @@ directory.SourceView = Backbone.View.extend({
         //this.$el.html(this.template());
 
         return this;
-    },
-
-    showMeBtnClick:function () {
-        console.log("show me...");
-        directory.shellView.search();
     },
 
     serverBtnClick:function () {
