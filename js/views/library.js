@@ -25,8 +25,7 @@ directory.LibraryView = Backbone.View.extend({
         setTimeout(function()
         {
             $('#startDateHolder').datetimepicker()
-                .on('changeDate', function (ev) {
-
+		.on('dp.change', function (ev) {
                     console.log('StartDate date changed...');
 
                     if (ev.date.valueOf() > NetcamAPIVars.libraryEndDate.valueOf()) {
@@ -38,11 +37,11 @@ directory.LibraryView = Backbone.View.extend({
                     self.refreshDatePickerValue();
                     self.refreshModel();
 
-                    $('#startDateHolder').datetimepicker('hide');
+                    $('#startDateHolder').data('DateTimePicker').hide();
                 });
 
             $('#endDateHolder').datetimepicker()
-                .on('changeDate', function (ev) {
+                .on('dp.change', function (ev) {
                     if (ev.date.valueOf() < NetcamAPIVars.libraryStartDate.valueOf()) {
                         NetcamAPIVars.libraryStartDate = new Date(new Date().setTime(ev.date.getTime() - 86400000));
                     }
@@ -51,7 +50,7 @@ directory.LibraryView = Backbone.View.extend({
                     self.refreshDatePickerValue();
                     self.refreshModel();
 
-                    $('#endDateHolder').datetimepicker('hide');
+                    $('#endDateHolder').data('DateTimePicker').hide();
                 });
         }, 50);
 
