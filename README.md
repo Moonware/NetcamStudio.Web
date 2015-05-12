@@ -10,7 +10,7 @@ It is based on [BackboneJS](http://backbonejs.org/) 1.1.2.
 In order to allow you to customize the client and add features by yourself, our Client are available on Github under GPL license.
 
 2015-05-10:
-Fixed the datetime picker in the library that doesn't allow modifying the selected period
+- Fixed the datetime picker in the library that doesn't allow modifying the selected period
 
 2015-02-25:
 - Allows viewers with limited rights, access only to specific cameras
