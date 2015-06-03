@@ -119,7 +119,7 @@ directory.Router = Backbone.Router.extend({
         "about":            "about",
         "login":            "login",
         "logout":           "login",
-        "contact":          "contact",
+        //"contact":          "contact",
         "admin":            "admin",
         "event":            "event",
         "library":          "library",
@@ -221,6 +221,7 @@ directory.Router = Backbone.Router.extend({
         this.$content.html(directory.loginView.el);
     },
 
+    /*
     contact: function () {
         directory.shellView.selectMenuItem('contact-menu');
 
@@ -231,6 +232,7 @@ directory.Router = Backbone.Router.extend({
 
         this.showView(directory.contactView);
     },
+    */
 
     source: function (id) {
         if (id == undefined)
@@ -302,7 +304,7 @@ directory.Router = Backbone.Router.extend({
 });
 
 $(document).on("ready", function () {
-    directory.loadTemplates(["AboutView", "LoginView", "ContactView", "ShellAuthView", "ShellUnauthView",
+    directory.loadTemplates(["AboutView", "LoginView", /*"ContactView",*/ "ShellAuthView", "ShellUnauthView",
         "SingleView", "MultiView", "CamListDropdownlist",
         "VideoPlayerView", "PanTiltZoomView", "AdministrationView", "ConnectedUsersView", "EventViewerView",
         "ServerStatusView", "LibraryView", "TimelineView"],
