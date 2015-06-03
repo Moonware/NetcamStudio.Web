@@ -4,6 +4,8 @@ directory.CameraView = Backbone.View.extend({
     className: "cameraContainer",
 
     allowZoom: false,
+    running : false,
+    initialized : false,
 
     events: {
         'resize': function()
@@ -19,17 +21,10 @@ directory.CameraView = Backbone.View.extend({
             return;
 
         this.$el.toggleClass('outPopUp');
-        var self = this;
 
         if (this.isZoomed){
 
             this.$el.toggleClass(this.previousClassName);
-
-            /*
-            this.$el.find('div').each(function(){
-                $(this).attr('style', 'width:' + self.containerSize.width + '%; height: ' +self.containerSize.height + '%;');
-            });
-            */
 
             $('.overlay').remove();
 
@@ -54,12 +49,6 @@ directory.CameraView = Backbone.View.extend({
 
             this.$el.toggleClass(this.previousClassName);
 
-            /*
-            this.$el.find('div').each(function(){
-                $(this).attr('style', 'width:100%; height: 100%;');
-            });
-            */
-
             if( $('.overlay').length == 0 ){
                 $('body').append('<div class="overlay"></div>');
             }
@@ -82,8 +71,6 @@ directory.CameraView = Backbone.View.extend({
         }
 
         this.isZoomed = !this.isZoomed;
-
-        //directory.router.navigateToSource(this.id);
     },
 
     initClickListener: function(){
@@ -111,7 +98,6 @@ directory.CameraView = Backbone.View.extend({
 
         var data = _.clone(this.model.attributes);
 
-        //this.id = data.Id;
         this.name = '#'+data.Id + " - " + data.SourceName;
 
         this.playJPEG();
@@ -138,19 +124,58 @@ directory.CameraView = Backbone.View.extend({
                 break;
         }
 
-        var self = this;
-
         if (this.streamType == directory.StreamType.JPEG || this.streamType == directory.StreamType.MOTION)
         {
-            $('#liveImage' + this.model.attributes.Id).one('load',function() {
-                if (directory.isFullScreenMode && !self.isZoomed) {
-                    self.checkEscapeFromFullScreen();
-                } else {
-                    setTimeout(function(){
-                        self.loadImage();
-                    }, 40);
-                }
-            });
+            if (!this.initialized)
+            {
+                $('#liveImage' + this.model.attributes.Id).error(function () {
+
+                    console.log('Error in loading image ' + $(this).attr("src"));
+                    // retry once
+
+                    if ($(this).hasClass('load-retry'))
+                    {
+                        console.log('Load Image Giving Up... Setting offline image: ' + WebUIConfig.IMG_OFFLINE_PATH);
+
+                        $(this).attr('src', WebUIConfig.IMG_OFFLINE_PATH);
+
+                        // failed after retry... giving up and unbinding the event
+                        $(this).unbind("error");
+                        $(this).unbind("load");
+
+                        this.running = false;
+                        this.initialized = false;
+                    }
+                    else
+                    {
+                        console.log('Load Image Retry...');
+
+                        $(this).addClass('load-retry');
+
+                        var self = this;
+
+                        setTimeout(function () {
+                            $(self).attr('src', fullUrl + '&retry=1');
+                        }, 40);
+                    }
+                });
+
+                var self = this;
+
+                $('#liveImage' + this.model.attributes.Id).load(function () {
+                    $(this).removeClass('load-retry');
+
+                    if (directory.isFullScreenMode && !self.isZoomed) {
+                        self.checkEscapeFromFullScreen();
+                    } else {
+                        setTimeout(function () {
+                            self.loadImage();
+                        }, 40);
+                    }
+                });
+
+                this.initialized = true;
+            }
         }
 
         $('#liveImage' + this.model.attributes.Id).attr('src', fullUrl);
@@ -172,9 +197,12 @@ directory.CameraView = Backbone.View.extend({
         this.model.unbind("change", this.render);
         this.model.unbind("destroy", this.close);
 
-        //console.log('Camera ' + this.id + ' >> Running = false');
-        this.running = false;
+        $('#liveImage' + this.model.attributes.Id).unbind("error");
+        $('#liveImage' + this.model.attributes.Id).unbind("load");
 
+        console.log('Camera ' + this.model.attributes.Id + ' >> Running = false');
+        this.running = false;
+        this.initialized = false;
     },
 
     setStreamType: function(streamType){
@@ -211,16 +239,11 @@ directory.CameraView = Backbone.View.extend({
         this.$el.html("<img src='"+ WebUIConfig.IMG_LOADING_PATH +"' "
             + "title='" + this.name + "' id='liveImage" + this.model.attributes.Id + "' class='webCamImage'>");
 
-        // handle error on loading image
-        var self = this;
-        $('#liveImage' + this.model.attributes.Id).error(function () {
-            $(this).unbind("error").attr("src", WebUIConfig.IMG_OFFLINE_PATH);
-            self.running = false;
-        });
+        // doesn't exist in the DOM at this time :s
+        this.initialized = false;
     },
 
     createControlPanel: function() {
-
         //console.log('createControlPanel...');
 
         var isRecording = this.model.isRecording;
@@ -327,7 +350,10 @@ directory.CameraView = Backbone.View.extend({
 
         this.running = false;
         this.addCameraImage();
-        this.loadImage();
+
+        var self = this;
+
+        setTimeout(function(){self.loadImage()}, 50);
     },
 
     playLIVE: function(){
