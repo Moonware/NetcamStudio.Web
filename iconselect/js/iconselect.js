@@ -115,7 +115,11 @@ function IconSelect($$elementID, $$parameters) {
             if(_selectedIndex != -1) _icons[_selectedIndex].element.setAttribute('class','icon selected');
         }
         
-        _View.iconSelectElement.dispatchEvent(new Event('changed'));
+	var evt = document.createEvent("HTMLEvents");
+    	evt.initEvent("changed", false, true);
+    	_View.iconSelectElement.dispatchEvent(evt);
+
+        //_View.iconSelectElement.dispatchEvent(new Event('changed'));
         
         //_View.showBox(false);
         
