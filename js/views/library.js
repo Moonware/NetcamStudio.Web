@@ -257,7 +257,7 @@ directory.LibraryItemView = Backbone.View.extend({
                     posterURL: directory.getLibraryURL(data.Id, data.ItemType, true),
                     sourceURL: directory.getLibraryURL(data.Id, data.ItemType, false),
                     videoId: videoObjectId,
-                    mode: 'flash'
+                    mode: 'html5'
                 });
 
                 /* style="width: 100%; height: 100%;" */
