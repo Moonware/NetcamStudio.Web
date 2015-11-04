@@ -389,7 +389,9 @@ directory.CameraView = Backbone.View.extend({
                 url: aUrl
             });
 
-            this.audio.play();
+            if (this.audio) {
+                this.audio.play();
+            }
         }
     },
 
@@ -413,7 +415,7 @@ directory.VideoPlayerView = Backbone.View.extend({
         this.options = options;
     },
 
-    render: function(initPlayer){
+    render: function(initPlayer, autoPlay){
 
         this.$el.html(this.template({
             posterURL: this.options.posterURL,
@@ -424,15 +426,23 @@ directory.VideoPlayerView = Backbone.View.extend({
 
         var self = this;
 
+        if (autoPlay != true)
+        {
+            autoPlay = false;
+        }
+
         if (initPlayer) {
             setTimeout(function () {
 
                 var obj = {};
+
                 if (self.options.mode == 'html5') {
-                    obj = {'techOrder': ['html5', 'flash']};
+                    obj = {techOrder: ['html5', 'flash'], autoplay : autoPlay, preload: 'auto'};
                 } else {
-                    obj = {'techOrder': ['flash', 'html5']};
+                    obj = {techOrder: ['flash', 'html5'], autoplay : autoPlay, preload: 'auto'};
                 }
+
+                console.log('VideoJS Options >> ' + JSON.stringify(obj));
 
                 console.log('Calling VideoJS(' + self.options.videoId + ')');
 

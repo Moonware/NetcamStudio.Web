@@ -11,11 +11,6 @@ body {
     min-height: 300px;
 }
 
-.timeline450
-{
-    height: 450px;
-}
-
 .brand {
     position: relative;
     width: 133px;
@@ -857,4 +852,132 @@ input[type="checkbox"]:checked:disabled + label::before {
 }
 
 .closeButton:hover {
+}
+
+
+/* D3 JS Styles */
+
+.chart {
+    shape-rendering: crispEdges;
+}
+
+.mini text {
+    font: 9px sans-serif;
+}
+
+.main text {
+    font: 12px sans-serif;
+}
+
+.month text {
+    text-anchor: start;
+}
+
+.todayLine {
+    stroke: blue;
+    stroke-width: 1.5;
+}
+
+.axis line, .axis path {
+    stroke: black;
+}
+
+.miniItem {
+    stroke-width: 6;
+}
+
+.future {
+    stroke: gray;
+    fill: #ddd;
+}
+
+.past {
+    stroke: green;
+    fill: lightgreen;
+}
+
+.brush .extent {
+    stroke: gray;
+    fill: blue;
+    fill-opacity: .165;
+}
+
+/* Event Drops */
+
+.zoom {
+    fill: transparent;
+    cursor: pointer;
+}
+
+.y-axis path,
+.y-axis line,
+.x-axis path,
+.x-axis line,
+path,
+line
+{
+    stroke: black;
+    fill: none;
+    stroke-width: 1px;
+}
+
+.y-axis g line {
+    stroke: grey;
+    fill: none;
+    stroke-width: 1px;
+}
+
+.graph-body .line {
+    height: 20px;
+    padding: 10px;
+}
+
+
+.timeline450
+{
+    min-height: 450px;
+}
+
+.centeredDiv {
+    text-align: center;
+}
+
+.fitHeight {
+    min-width: 450px;
+    height: 290px;
+}
+
+.borderedImage {
+    margin: auto;
+    /*border: 1px solid black;*/
+}
+
+/* d3 tooltip */
+
+.timeline-preview
+{
+    border:1px solid black;
+    border-radius: 8px;
+    background: #ddd;
+    padding: 4px;
+
+    width:600px;
+    height:350px;
+
+    /*position:absolute;*/
+    left:0; right:0;
+    top:0; bottom:0;
+    margin:auto;
+
+    max-width:100%;
+    max-height:100%;
+    overflow:auto;
+}
+
+rect {
+    fill: #46bcff;
+}
+
+rect.hover {
+    fill: #ff0000;
 }

@@ -1,7 +1,6 @@
 directory.LibraryItems = Backbone.Model.extend({
 
     defaults: {
-
     },
 
     initialize:function () {

@@ -222,8 +222,9 @@ var WebsiteAPI = function(){
     };
 
     this.jsonGetTimelineItems = function() {
-        directory.timelineItems.url = getJsonRequestURL() + "/GetTimelineForPeriod?numRecords=9999"
-        + "&sourceId=" + NetcamAPIVars.LIBRARY_SOURCE_ID + "&startDate=" + NetcamAPIVars.Yesterday.getTime()
+        directory.timelineItems.url = getJsonRequestURL() + "/GetTimelineForPeriod?numRecords=99999"
+        + "&sourceId=" + NetcamAPIVars.LIBRARY_SOURCE_ID
+        + "&startDate=" + NetcamAPIVars.MonthAgo.getTime()
         + "&endDate=" + NetcamAPIVars.Tomorrow.getTime()
         + "&authToken=" + directory.loggedUser.sessionToken;
 
@@ -232,9 +233,25 @@ var WebsiteAPI = function(){
         directory.timelineItems.fetch();
     };
 
+    // tweaked to use getItemsForPeriod too
+    /*
+    this.jsonGetTimelineItems = function() {
+        directory.timelineItems.url = getJsonRequestURL() + "/GetItemsForPeriod?numRecords=99999"
+            + "&sourceId=" + NetcamAPIVars.LIBRARY_SOURCE_ID
+            + "&startDate=" + 1 //NetcamAPIVars.Yesterday.getTime()
+            + "&endDate=" + NetcamAPIVars.Tomorrow.getTime()
+            + "&authToken=" + directory.loggedUser.sessionToken;
+
+        console.log('directory.timelineItems.url >> ' + directory.timelineItems.url);
+
+        directory.timelineItems.fetch();
+    };
+    */
+
     this.jsonGetLibraryItems = function() {
         directory.libraryItems.url = getJsonRequestURL() + "/GetItemsForPeriod?numRecords=9999"
-            + "&sourceId=" + NetcamAPIVars.LIBRARY_SOURCE_ID + "&startDate=" + NetcamAPIVars.libraryStartDate.getTime()
+            + "&sourceId=" + NetcamAPIVars.LIBRARY_SOURCE_ID
+            + "&startDate=" + NetcamAPIVars.libraryStartDate.getTime()
             + "&endDate=" + NetcamAPIVars.libraryEndDate.getTime()
             + "&authToken=" + directory.loggedUser.sessionToken;
 

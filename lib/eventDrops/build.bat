@@ -1,0 +1,1 @@
+browserify ./eventDrops.js > ./dist/eventDrops.js

@@ -13,6 +13,12 @@ var NetcamAPIVars = (function(){
     var yesterday = new Date();
     yesterday.setTime(now.getTime() - 86400000);
 
+    var weekAgo = new Date();
+    weekAgo.setTime(now.getTime() - (7 * 86400000));
+
+    var monthAgo = new Date();
+    monthAgo.setTime(now.getTime() - (31 * 86400000));
+
     var tomorrow = new Date();
     tomorrow.setTime(now.getTime() + 86400000);
 
@@ -20,6 +26,8 @@ var NetcamAPIVars = (function(){
     config.libraryEndDate = tomorrow;
 
     config.Yesterday = yesterday;
+    config.WeekAgo = weekAgo;
+    config.MonthAgo = monthAgo;
     config.Tomorrow = tomorrow;
 
     return config;
