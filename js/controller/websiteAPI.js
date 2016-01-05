@@ -32,25 +32,140 @@ var WebsiteAPI = function(){
 
         try {
             // username / password
-            var queryParams = 'username=' + username + '&password=' + password;
-            var jsonCommand = getJsonRequestURL() +  '/Login?' + queryParams;
+            //var queryParams = 'username=' + username + '&password=' + password;
+            var jsonCommand = getJsonRequestURL() +  '/GetToken';
+
+            //$.post(jsonCommand, {'username': username, 'password': password, 'deviceToken':'none'});
+
+
+            var postData = {
+                username: username,
+                password: password
+            };
 
             $.ajax({
                 url: jsonCommand,
-                type: 'GET',
-                datatype: 'json',
+                type: 'post',
+                dataType: 'json',
+                data: JSON.stringify(postData),
                 success: function(data) {
 
                     directory.activity.startTracking();
 
                     if (data != undefined)
                     {
-                        /*
-                        $.each(data, function(index, value) {
-                            console.log('Login Response [' + index + '] : ' + value);
-                        });
-                        */
+                        if (data.IsAuthenticated == true)
+                        {
+                            console.log('Session Token Received : ' + data.SessionToken);
 
+                            $.cookie('hostName', serverHost, { expires: 365 });
+                            $.cookie('httpPort', serverPort, { expires: 365 });
+                            $.cookie('login', username, { expires: 365 });
+
+                            if ($('#savePassword').is(':checked')) {
+                                $.cookie('password', password, { expires: 365 });
+                                $.cookie('savepassword', '1', { expires: 365 });
+                            } else {
+                                $.removeCookie('password');
+                                $.removeCookie('savepassword');
+                                $('#loginPassword').val(WebUIConfig.PASSWORD);
+                            }
+
+                            directory.loggedUser.serverHost = serverHost;
+                            directory.loggedUser.serverPort = serverPort;
+                            directory.loggedUser.serverUsername = username;
+
+                            var canPTZ = false;
+
+                            if (data.Roles !== undefined) {
+
+                                $.each(data.Roles, function (index, value) {
+
+                                    //console.log('Role[' + index + '] >> ' + value.Name);
+
+                                    if ((value.Name !== undefined) && ((value.Name == "Administrator" || value.Name == "Control PTZ")))
+                                    {
+                                        canPTZ = true;
+                                    }
+                                });
+                            }
+
+                            // TODO: Check in roles
+                            directory.loggedUser.ptzEnabled = canPTZ;
+
+                            directory.loggedUser.serverQueryUrl = directory.HTTP_PREFIX + '://' + serverHost + ':' + serverPort + '/Json/';
+
+                            if (savePassword)
+                            {
+                                directory.loggedUser.serverPassword = password;
+                            }
+                            else
+                            {
+                                console.log('Password not saved >> ' + savePassword);
+                                directory.loggedUser.serverPassword = '';
+                            }
+
+                            directory.loggedUser.sessionToken = data.SessionToken;
+                            directory.loggedUser.sessionTokenTimestamp = new Date();
+
+                            // Automatically Get Cameras List from Server
+                            directory.websiteAPI.jsonGetCameras();
+
+                            directory.connectedUsers = new directory.ConnectedUsersCollection();
+
+                            directory.processInfo = new directory.ProcessInfo();
+                            directory.serviceStatus = new directory.ServiceStatus();
+
+                            directory.eventLogs = new directory.EventLogsCollection();
+                            directory.libraryItems = new directory.LibraryItemsCollection();
+
+                            directory.timelineItems = new directory.TimelineItemsCollection();
+
+                            // Update the ShellView as user is logged in
+                            directory.shellView = new directory.ShellAuthView();
+                            $('#virtualBody').html(directory.shellView.render().el);
+                        }
+                        else
+                        {
+                            var errorMsg = data.FailedLoginMessage;
+                            alert('Login Failed. Reason: ' + errorMsg);
+                        }
+                    }
+                },
+
+                error: function(err) {
+                    console.log('Login Failed: ' + err);
+                    var errMsg = '';
+                    if (err.status == 0)
+                    {
+                        errMsg = 'Cannot connect to server';
+                    }
+                    else
+                    {
+                        errMsg = 'Error ' + err.status + ' - ' + err.statusText;
+                    }
+
+                    alert('Login Failed. Reason : ' + errMsg);
+
+                }
+            });
+
+            /*
+            $.ajax({
+                url: jsonCommand,
+                type: 'POST',
+                //data: {'username': username, 'password': password},
+
+                datatype: 'json',
+                data: '{ username: \'' + username + '\', password: \'' + password + '\'}',
+
+                contentType: 'application/json; charset=utf-8',
+                success: function(data) {
+
+                    directory.activity.startTracking();
+
+                    if (data != undefined)
+                    {
                         if (data.IsAuthenticated == true)
                         {
                             console.log('Session Token Received : ' + data.SessionToken);
@@ -153,13 +268,6 @@ var WebsiteAPI = function(){
 
                 error: function(err) {
                     console.log('Login Failed: ' + err);
-
-                    /*
-                    $.each(err, function(index, value) {
-                        console.log('Login Response [' + index + '] : ' + value);
-                    });
-                    */
-
                     var errMsg = '';
                     if (err.status == 0)
                     {
@@ -175,12 +283,10 @@ var WebsiteAPI = function(){
                 },
 
                 beforeSend: function(xhr) {
-
                     // xhr.setRequestHeader("QueryString", queryParams);
-
                 }
-
             });
+            */
 
         } catch (err) {
             console.log('Login Exception: ' + err);
