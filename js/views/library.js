@@ -263,6 +263,11 @@ directory.LibraryItemView = Backbone.View.extend({
                 /* style="width: 100%; height: 100%;" */
 
                 $('.outPopUp').html(videoPlayerView.render(true).el);
+                $('.outPopUp').append('<img src="./img/download.png" class="downloadButton" tabindex="1" onclick=""/>');
+                $('.downloadButton').on('click touchend', function(){
+                    alert("download");
+                    self.onClick();
+                });
                 $('.outPopUp').append('<img src="./img/close.png" class="closeButton" tabindex="1" onclick=""/>');
                 $('.closeButton').on('click touchend', function(){
                     videoPlayerView.onClose();
