@@ -819,6 +819,17 @@ input[type="checkbox"]:checked:disabled + label::before {
     cursor: pointer;
 }
 
+.downloadButton {
+    position: fixed;
+    top: 12px;
+    right: 60px;
+
+    width: 33px;
+    height: 33px;
+    cursor: pointer;
+}
+
+
 .bootstrap-datetimepicker-widget {
     height: auto;
 }
